@@ -11,19 +11,20 @@ bp = Blueprint('blog', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
+    activities = db.execute(
+        'SELECT p.id, title, created, author_id, username, points, note'
+        ' FROM action p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=posts)
+    return render_template('blog/index.html', activities=activities)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
+        title = request.form['activity']
+        points = request.form['points']
+        note = request.form['note']
         error = None
 
         if not title:
@@ -34,10 +35,26 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' Values (?, ?, ?)',
-                (title, body, g.user['id'])
+                'INSERT INTO action (title, points, note, author_id)'
+                ' Values (?, ?, ?, ?)',
+                (title, points, note, g.user['id'])
             )
+            # Update Chapter Building, Policy Change, or Training and Education Points on the Chapter profiles.
+            if title == 'policy':
+                db.execute(
+                    'UPDATE user SET pc = pc + ? Where id = ?',
+                    (int(points), g.user['id'])
+                )
+            elif title == 'community':
+                db.execute(
+                    'UPDATE user SET cb = ? Where id = ?',
+                    (int(points), g.user['id'])
+                )
+            elif title == 'education':
+                db.execute(
+                    'UPDATE user SET te = ? Where id = ?',
+                    (int(points), g.user['id'])
+                )
             db.commit()
             return redirect(url_for('blog.index'))
     return render_template('blog/create.html')
