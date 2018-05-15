@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Admin{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  <label for="name">Title</label>
+  <input name="name" value="{{ request.form['title']}}" required>
+  <label for="type">Type</label>
+  <select name="type" value="{{ request.form['type']}}" required>
+    <option value="1">Policy Change</option>
+    <option value="2">Community Building</option>
+    <option value="3">Training and Education</option>
+  </select>
+      <input type="submit" value="Save">
+</form>
+{% endblock %}
