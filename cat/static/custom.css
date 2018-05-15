@@ -1,3 +1,7 @@
 body {
   background-color: #fff;
 }
+
+.btn-primary {
+  margin:0;
+}

@@ -1,19 +1,118 @@
 {% extends 'base.html' %}
+{%block title %}Admin{%endblock%}
+  {% block header %}
+  {% if g.user['username'] == 'tyler' %}
+    <h1>Admin</h1>
+    {% else %}
+    <h1>Restricted</h1>
+    {{g.user['permissions']}}
+    {% endif %}
+  {% endblock %}
 
-{% block header %}
-  <h1>{% block title %}Admin{% endblock %}</h1>
-{% endblock %}
+  {% block content %}
+  {% if g.user['username'] == 'tyler' %}
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <!-- Section to add users -->
+        <h2>Add Users</h2>
+      <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" placeholder="Enter Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+      <label for="permissions">Permissions</label>
+      <select class="form-control" id="Permissions">
+        <option>Chapter</option>
+        <option>Staffer</option>
+        <option>Admin</option>
+      </select>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-{% block content %}
-<form method="post">
-  <label for="name">Title</label>
-  <input name="name" value="{{ request.form['title']}}" required>
-  <label for="type">Type</label>
-  <select name="type" value="{{ request.form['type']}}" required>
-    <option value="1">Policy Change</option>
-    <option value="2">Community Building</option>
-    <option value="3">Training and Education</option>
-  </select>
-      <input type="submit" value="Save">
-</form>
-{% endblock %}
+    </div>
+    <div class="col-sm">
+      <h2>Add Categories</h2>
+
+        <!-- Section to add point categories -->
+        <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="username" class="form-control" id="username" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+        <label for="permissions">Permissions</label>
+        <select class="form-control" id="Permissions">
+          <option>Chapter</option>
+          <option>Staffer</option>
+          <option>Admin</option>
+        </select>
+      </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <h2>Log Points</h2>
+
+      <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" placeholder="Enter Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+      <label for="permissions">Permissions</label>
+      <select class="form-control" id="Permissions">
+        <option>Chapter</option>
+        <option>Staffer</option>
+        <option>Admin</option>
+      </select>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    <div class="col-sm">
+      <h2>Spend Points</h2>
+
+      <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" placeholder="Enter Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+      <label for="permissions">Permissions</label>
+      <select class="form-control" id="Permissions">
+        <option>Chapter</option>
+        <option>Staffer</option>
+        <option>Admin</option>
+      </select>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Section to spend points -->
+  {% endif %}
+  {% endblock %}

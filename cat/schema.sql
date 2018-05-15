@@ -9,6 +9,7 @@ CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
+  permissions TEXT,
   cb INTEGER,
   pc INTEGER,
   te INTEGER
@@ -37,11 +38,5 @@ CREATE TABLE spending (
 CREATE TABLE action_list (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
-  type INTEGER NOT NULL,
-  FOREIGN KEY (type) REFERENCES types (id)
-);
-
-CREATE TABLE types (
-  id  INTEGER PRIMARY KEY AUTOINCREMENT,
-  category TEXT NOT NULL
+  type TEXT NOT NULL,
 );
