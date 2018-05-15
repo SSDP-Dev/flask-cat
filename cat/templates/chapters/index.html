@@ -8,15 +8,12 @@
 {% endblock %}
 
 {% block content %}
-  {% for activity in activities %}
+  {% for chapter in chapters %}
     <article class="post">
       <header>
         <div>
-          <div class="about">{{ activity['title'] }} by {{ activity['username'] }} on {{ activity['created'].strftime('%Y-%m-%d') }} for {{activity['points']}} points</div>
+          <div class="about">{{ chapter['Username'] }} CB: {{ chapter['cb'] }} PC: {{ chapter['pc']}} TE {{chapter['te']}}</div>
         </div>
-        {% if g.user['id'] == activity['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=activity['id']) }}">Edit</a>
-        {% endif %}
       </header>
     </article>
     {% if not loop.last %}
