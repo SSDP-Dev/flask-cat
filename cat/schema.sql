@@ -12,7 +12,8 @@ CREATE TABLE user (
   permissions TEXT,
   cb INTEGER,
   pc INTEGER,
-  te INTEGER
+  te INTEGER,
+  balance INTEGER
 );
 
 CREATE TABLE action (
