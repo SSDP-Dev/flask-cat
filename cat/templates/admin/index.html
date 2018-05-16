@@ -1,20 +1,14 @@
 {% extends 'base.html' %}
-{%block title %}Admin{%endblock%}
-  {% block header %}
-  {% if g.user['username'] == 'tyler' %}
-    <h1>Admin</h1>
-    {% else %}
-    <h1>Restricted</h1>
-    {{g.user['permissions']}}
-    {% endif %}
-  {% endblock %}
+
+{% block title %}Admin{% endblock %}
 
   {% block content %}
-  {% if g.user['username'] == 'tyler' %}
+  {% if g.user['permissions'] == 'admin' %}
+
   <div class="container">
   <div class="row">
+    <!-- Section to add users -->
     <div class="col-sm">
-        <!-- Section to add users -->
         <h2>Add Users</h2>
       <form>
       <div class="form-group">
@@ -35,84 +29,84 @@
     </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
     </div>
+
+    <!-- Section to add point categories -->
     <div class="col-sm">
       <h2>Add Categories</h2>
-
-        <!-- Section to add point categories -->
         <form>
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="username" class="form-control" id="username" placeholder="Enter Username">
+          <label for="title">Title</label>
+          <input type="title" class="form-control" id="title" placeholder="Enter Title">
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <label for="description">Description</label>
+          <input type="description" class="form-control" id="description" placeholder="Short Description">
         </div>
         <div class="form-group">
-        <label for="permissions">Permissions</label>
-        <select class="form-control" id="Permissions">
-          <option>Chapter</option>
-          <option>Staffer</option>
-          <option>Admin</option>
+        <label for="type">Type</label>
+        <select class="form-control" id="type">
+          <option>Community Building</option>
+          <option>Policy Change</option>
+          <option>Training and Education</option>
         </select>
       </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
+    {% endif %}
+
+    {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' or g.user['permissions'] == 'chapter'%}
+    <!-- Section to log points -->
     <div class="col-sm">
       <h2>Log Points</h2>
-
       <form>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="username" class="form-control" id="username" placeholder="Enter Username">
+        <label for="activity">Activity</label>
+        <input type="activity" class="form-control" id="activity" placeholder="Enter Activity">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <label for="points">Points</label>
+        <input type="points" class="form-control" id="points" placeholder="Points">
       </div>
       <div class="form-group">
-      <label for="permissions">Permissions</label>
-      <select class="form-control" id="Permissions">
-        <option>Chapter</option>
-        <option>Staffer</option>
-        <option>Admin</option>
+        {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' %}
+      <label for="chapter">Chapter</label>
+      <select class="form-control" id="chapter">
+        <option>Placeholder</option>
+        <option>Placeholder</option>
+        <option>Placeholder</option>
       </select>
     </div>
+  {% endif %}
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </div>
+    <!-- Section to spend points -->
+
     <div class="col-sm">
       <h2>Spend Points</h2>
-
       <form>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="username" class="form-control" id="username" placeholder="Enter Username">
+        <label for="item">Item</label>
+        <input type="item" class="form-control" id="username" placeholder="Item">
       </div>
+      {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' %}
+
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-      </div>
-      <div class="form-group">
-      <label for="permissions">Permissions</label>
-      <select class="form-control" id="Permissions">
-        <option>Chapter</option>
-        <option>Staffer</option>
-        <option>Admin</option>
+      <label for="chapter">Chapter</label>
+      <select class="form-control" id="chapter">
+        <option>Placeholder</option>
+        <option>Placeholder</option>
+        <option>Placeholder</option>
       </select>
     </div>
+    {% endif %}
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </div>
   </div>
 </div>
-
-
-
-
-  <!-- Section to spend points -->
   {% endif %}
   {% endblock %}

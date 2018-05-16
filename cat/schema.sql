@@ -38,5 +38,6 @@ CREATE TABLE spending (
 CREATE TABLE action_list (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
+  description TEXT,
   type TEXT NOT NULL,
 );
