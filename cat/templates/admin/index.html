@@ -5,13 +5,13 @@
   {% block content %}
   <div class="centered-div">
     {% if g.user['permissions'] == 'admin' %}
-      <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-primary">Create Users</button> </a>
-      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-primary">Create Categories</button> </a></a>
+      <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
+      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a></a>
       {% endif %}
 
     {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' or g.user['permissions'] == 'chapter'%}
-      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-primary">Log Activities</button> </a></a>
-      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-primary">Spend Points</button> </a></a>
+      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a></a>
+      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a></a>
       {% else %}
       <h2>You must be logged in to view this screen</h2>
       {% endif %}

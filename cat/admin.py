@@ -7,8 +7,6 @@ from werkzeug.security import generate_password_hash
 from cat.auth import login_required
 from cat.db import get_db
 
-admin = 'admin'
-
 bp = Blueprint('admin', __name__)
 
 @bp.route('/admin', methods=('GET', 'POST'))
