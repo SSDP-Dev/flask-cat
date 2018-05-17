@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Spend Points{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-sm">
+  <form method="post">
+  <div class="form-group">
+    <label for="item">Item</label>
+    <input name="item" class="form-control" id="item" placeholder="Item">
+  </div>
+  <div class="form-group">
+    <label for="cost">Points</label>
+    <input name="cost" class="form-control" id="points" placeholder="Points">
+  </div>
+  {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' %}
+
+  <div class="form-group">
+  <label for="chapter">Chapter</label>
+  <select name="chapter" class="form-control" id="chapter">
+    <option>Placeholder</option>
+    <option>Placeholder</option>
+    <option>Placeholder</option>
+  </select>
+</div>
+{% endif %}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}
