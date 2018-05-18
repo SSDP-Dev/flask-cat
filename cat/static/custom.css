@@ -66,3 +66,8 @@ p.point-decl {
 .points-earned {
 	text-align: center;
 }
+
+.feed-div {
+  overflow-y: auto;
+  height: 400px;
+}
