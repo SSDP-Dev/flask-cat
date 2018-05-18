@@ -44,6 +44,15 @@ def chapter(username):
     pc_percent = math.floor((raw_pc / 75) * 100)
     te_percent = math.floor((raw_te / 50) * 100)
 
+    if cb_percent > 100:
+        cb_percent = 100
+
+    if pc_percent > 100:
+        pc_percent = 100
+
+    if te_percent > 100:
+        te_percent = 100            
+
     points = {'cb': cb_percent, 'pc': pc_percent, 'te': te_percent}
 
     return render_template('chapters/chapter.html', chapter=chapter, points = points)

@@ -113,7 +113,13 @@ def delete(id):
 
 @bp.route('/leaderboard')
 def leaderboard():
-    return render_template('blog/leaderboard.html')
+    db = get_db()
+    chapters = db.execute(
+        'SELECT username, cb, pc, te, balance, permissions'
+        ' FROM user'
+        ' ORDER BY balance DESC'
+    ).fetchall()
+    return render_template('blog/leaderboard.html', chapters=chapters)
 
 @bp.route('/available-activities')
 def availableActivities():
@@ -122,7 +128,6 @@ def availableActivities():
 @bp.route('/faq')
 def faq():
     return render_template('blog/faq.html')
-
 
 @bp.route('/store')
 def store():
