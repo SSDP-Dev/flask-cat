@@ -1,20 +1,7 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS action;
-DROP TABLE IF EXISTS spending;
 DROP TABLE IF EXISTS action_list;
-DROP TABLE IF EXISTS types;
-
-CREATE TABLE user (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  permissions TEXT,
-  cb INTEGER,
-  pc INTEGER,
-  te INTEGER,
-  balance INTEGER
-);
+DROP TABLE IF EXISTS spending;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE action (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,6 +11,13 @@ CREATE TABLE action (
   note TEXT,
   points INTEGER NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE action_list (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  description TEXT,
+  type TEXT NOT NULL,
 );
 
 CREATE TABLE spending (
@@ -36,9 +30,13 @@ CREATE TABLE spending (
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
-CREATE TABLE action_list (
+CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  description TEXT,
-  type TEXT NOT NULL,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  permissions TEXT,
+  cb INTEGER,
+  pc INTEGER,
+  te INTEGER,
+  balance INTEGER
 );
