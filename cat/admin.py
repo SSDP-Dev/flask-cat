@@ -10,31 +10,39 @@ from cat.db import get_db
 bp = Blueprint('admin', __name__)
 
 @bp.route('/admin', methods=('GET', 'POST'))
+# Return the index page for the admin panel.
+# This is mostly just a landing page to send us to the real controls.
 def index():
     return render_template('admin/index.html')
 
 @bp.route('/admin/users', methods=('GET', 'POST'))
+# This page allows us to add users to the database.
 def users():
+    # When someone POSTs to the page, grab the info from the form
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         permissions = request.form['permissions']
         db = get_db()
+        # Add to the database, with a hashed password and values at 0
         db.execute(
-            'INSERT INTO user (username, password, permissions, cb, pc, te, balance)'
-            ' Values (?, ?, ?, 0, 0, 0, 0)',
-            (username, generate_password_hash(password), permissions)
+        'INSERT INTO user (username, password, permissions, cb, pc, te, balance)'
+        ' Values (?, ?, ?, 0, 0, 0, 0)',
+        (username, generate_password_hash(password), permissions)
         )
         db.commit()
     return render_template('admin/users.html')
 
 @bp.route('/admin/categories', methods=('GET', 'POST'))
+# This page allows us to add categories to the database.
 def categories():
     if request.method == 'POST':
+        # When someone POSTs to the page, grab the info from the form
         title = request.form['title']
         description = request.form['description']
         type = request.form['type']
         db = get_db()
+        # Add to the database
         db.execute(
             'INSERT INTO action_list (title, description, type)'
             ' Values (?, ?, ?)',
@@ -44,36 +52,55 @@ def categories():
     return render_template('admin/categories.html')
 
 @bp.route('/admin/activities', methods=('GET', 'POST'))
+# This page allows us to log activities to the database.
 def activities():
     db = get_db()
+    # Auto populate the list of activities from database
     activities = db.execute('SELECT title FROM action_list')
-
-    chapters = db.execute('SELECT username FROM user WHERE permissions LIKE "Chapter"')
+    # Auto populate the list of chapters from the database
+    chapters = db.execute(
+    'SELECT username FROM user WHERE permissions LIKE "Chapter"'
+    )
     if request.method == 'POST':
-        activity = request.form['name']
+        # If we post to the page, add the activity to the action table
+        activity = request.form['activity']
         points = request.form['points']
         logged_chapter = request.form['chapter']
+        # This returns the type of activity, by searching by title
+        type = db.execute(
+        'SELECT type FROM action_list WHERE title LIKE ?', (activity,)
+        ).fetchone()[0]
         db.execute(
-            'INSERT INTO action (title, points, author_id)'
-            ' Values (?, ?, ?)',
-            (activity, points, logged_chapter)
+        'INSERT INTO action (title, points, author_id)'
+        ' Values (?, ?, ?)',
+        (activity, points, logged_chapter)
         )
-        # Update Chapter Building, Policy Change, or Training and Education Points on the Chapter profiles.
-        # if title == 'policy':
-        #     db.execute(
-        #         'UPDATE user SET pc = pc + ? Where id = ?',
-        #         (int(points), g.user['id'])
-        #     )
-        # elif title == 'community':
-        #     db.execute(
-        #         'UPDATE user SET cb = ? Where id = ?',
-        #         (int(points), g.user['id'])
-        #     )
-        # elif title == 'education':
-        #     db.execute(
-        #         'UPDATE user SET te = ? Where id = ?',
-        #         (int(points), g.user['id'])
-        #     )
+        # We also add to the balance of the logged chapter
+        db.execute(
+        'UPDATE user SET balance = ? Where username = ?',
+        (int(points), logged_chapter)
+        )
+        # Update Chapter Building, Policy Change, or Training and Education
+        # This is based on type, which we get above.
+        if type == "Policy Change":
+            db.execute(
+            'UPDATE user SET pc = pc + ? Where username = ?',
+            (int(points), logged_chapter)
+            )
+            db.commit()
+        elif type == "Community Building":
+            db.execute(
+            'UPDATE user SET cb = ? Where username = ?',
+            (int(points), logged_chapter)
+            )
+            db.commit()
+
+        elif type == "Training and Education":
+            db.execute(
+            'UPDATE user SET te = ? Where username = ?',
+            (int(points), logged_chapter)
+            )
+            db.commit()
         db.commit()
     return render_template('admin/activities.html', activities=activities, chapters=chapters)
 
@@ -85,9 +112,9 @@ def spending():
         chapter = request.form['chapter']
         db = get_db()
         db.execute(
-            'INSERT INTO spending (title, points, author_id)'
-            ' Values (?, ?, ?)',
-            (item, cost, chapter)
+        'INSERT INTO spending (title, points, author_id)'
+        ' Values (?, ?, ?)',
+        (item, cost, chapter)
         )
         db.commit()
     return render_template('admin/spending.html')
