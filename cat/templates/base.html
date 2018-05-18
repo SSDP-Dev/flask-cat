@@ -12,6 +12,10 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="{{url_for('chapters.index')}}">Chapters</a>
+      <a class="nav-item nav-link" href="{{url_for('blog.leaderboard')}}">Leaderboard</a>
+      <a class="nav-item nav-link" href="{{url_for('blog.availableActivities')}}">Available Activities</a>
+      <a class="nav-item nav-link" href="{{url_for('blog.faq')}}">How-to/FAQ</a>
+      <a class="nav-item nav-link" href="{{url_for('blog.store')}}">Store</a>
       {% if g.user %}
       <a class="nav-item nav-link" href="{{url_for('admin.index')}}">Control Panel</a>
       <a class="nav-item nav-link" href="{{ url_for('auth.logout')}}">Log Out</a>
@@ -19,6 +23,7 @@
     <a class="nav-item nav-link" href="{{ url_for('auth.login')}}">Log In</a>
     {% endif %}
     </div>
+  </section>
   </div>
 </nav>
 </section>

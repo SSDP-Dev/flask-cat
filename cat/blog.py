@@ -110,3 +110,20 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+@bp.route('/leaderboard')
+def leaderboard():
+    return render_template('blog/leaderboard.html')
+
+@bp.route('/available-activities')
+def availableActivities():
+    return render_template('blog/available-activities.html')
+
+@bp.route('/faq')
+def faq():
+    return render_template('blog/faq.html')
+
+
+@bp.route('/store')
+def store():
+    return render_template('blog/store.html')
