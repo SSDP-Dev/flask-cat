@@ -10,19 +10,27 @@
   <form method="post">
   <div class="form-group">
     <label for="activity">Activity</label>
-    <input name="name" class="form-control" id="activity" placeholder="Enter Activity">
+    <select name="activity" class="form-control" id="activity">
+      <option>Select activity</option>
+      {% for activity in activities %}
+      <option>{{activity.title}}</option>
+      {% endfor %}
+    </select>
   </div>
   <div class="form-group">
     <label for="points">Points</label>
     <input name="points" class="form-control" id="points" placeholder="Points">
   </div>
+  <div class = "form-group">
+
   <div class="form-group">
     {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' %}
   <label for="chapter">Chapter</label>
   <select name="chapter" class="form-control" id="chapter">
-    <option>Placeholder</option>
-    <option>Placeholder</option>
-    <option>Placeholder</option>
+    <option>Select chapter</option>
+    {% for chapter in chapters %}
+    <option>{{chapter.username}}</option>
+    {% endfor %}
   </select>
 </div>
 {% endif %}

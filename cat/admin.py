@@ -45,11 +45,14 @@ def categories():
 
 @bp.route('/admin/activities', methods=('GET', 'POST'))
 def activities():
+    db = get_db()
+    activities = db.execute('SELECT title FROM action_list')
+
+    chapters = db.execute('SELECT username FROM user WHERE permissions LIKE "Chapter"')
     if request.method == 'POST':
         activity = request.form['name']
         points = request.form['points']
         logged_chapter = request.form['chapter']
-        db = get_db()
         db.execute(
             'INSERT INTO action (title, points, author_id)'
             ' Values (?, ?, ?)',
@@ -72,7 +75,7 @@ def activities():
         #         (int(points), g.user['id'])
         #     )
         db.commit()
-    return render_template('admin/activities.html')
+    return render_template('admin/activities.html', activities=activities, chapters=chapters)
 
 @bp.route('/admin/spending', methods=('GET', 'POST'))
 def spending():
