@@ -6,6 +6,8 @@ from werkzeug.exceptions import abort
 from cat.auth import login_required
 from cat.db import get_db
 
+import math
+
 bp = Blueprint('chapters', __name__)
 
 @bp.route('/chapters')
@@ -32,16 +34,16 @@ def get_chapter(username):
 
 @bp.route('/<username>/', methods=('GET', 'POST'))
 @login_required
-def display(username):
+def chapter(username):
     chapter = get_chapter(username)
+    raw_cb = chapter['cb']
+    raw_pc = chapter['pc']
+    raw_te = chapter['te']
 
-    return render_template('chapters/chapter.html', chapter=chapter)
-#
-# @bp.route('/<int:id>/delete', methods=('POST',))
-# @login_required
-# def delete(id):
-#     get_post(id)
-#     db = get_db()
-#     db.execute('DELETE FROM post WHERE id = ?', (id,))
-#     db.commit()
-#     return redirect(url_for('blog.index'))
+    cb_percent = math.floor((raw_cb / 75) * 100)
+    pc_percent = math.floor((raw_pc / 75) * 100)
+    te_percent = math.floor((raw_te / 50) * 100)
+
+    points = {'cb': cb_percent, 'pc': pc_percent, 'te': te_percent}
+
+    return render_template('chapters/chapter.html', chapter=chapter, points = points)

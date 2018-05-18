@@ -6,21 +6,21 @@
         <div class="container vertical rounded">
             <div class="progress-bar">
                 <div class="progress-track">
-                    <div class="progress-fill" style="height:50%"> </div>
+                    <div class="progress-fill" style="height: {{points['cb']}}%"> </div>
                     <p class="progress-label">Chapter Building</p>
                     <p class="point-decl">{{chapter['cb']}} points</p>
                 </div>
             </div>
             <div class="progress-bar">
                 <div class="progress-track">
-                    <div class="progress-fill" style="height:5%"></div>
+                    <div class="progress-fill" style="height:{{points['pc']}}%"></div>
                     <p class="progress-label">Policy Change</p>
                     <p class="point-decl">{{chapter['pc']}} points</p>
                 </div>
             </div>
             <div class="progress-bar">
                 <div class="progress-track">
-                    <div class="progress-fill" style="height:100%">
+                    <div class="progress-fill" style="height:{{points['te']}}%">
                     </div>
                     <p class="progress-label">Training and Education</p>
                     <p class="point-decl">{{chapter['te']}} points</p>

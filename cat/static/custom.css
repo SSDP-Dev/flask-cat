@@ -46,6 +46,17 @@ body {
   color: #000;
 }
 
+p.point-decl {
+	position: absolute;
+	top: 92%;
+	width: 100%;
+	z-index: 99;
+	text-align: center;
+	color: #FFF;
+	background: #757575;
+	border-radius: 2px;
+}
+
 #point-count {
 	padding: 0;
 	text-align: center;
