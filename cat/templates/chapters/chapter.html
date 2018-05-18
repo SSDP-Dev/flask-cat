@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Chapter Page{% endblock %}</h1>
+{% endblock %} {% block content %}
+<div class="centered-div">
+    <div id="buckets">
+        <div class="container vertical rounded">
+            <div class="progress-bar">
+                <div class="progress-track">
+                    <div class="progress-fill" style="height:50%"> </div>
+                    <p class="progress-label">Chapter Building</p>
+                    <p class="point-decl">{{chapter['cb']}} points</p>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-track">
+                    <div class="progress-fill" style="height:5%"></div>
+                    <p class="progress-label">Policy Change</p>
+                    <p class="point-decl">{{chapter['pc']}} points</p>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-track">
+                    <div class="progress-fill" style="height:100%">
+                    </div>
+                    <p class="progress-label">Training and Education</p>
+                    <p class="point-decl">{{chapter['te']}} points</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="point-count">
+        <div class="points-earned">
+          <img class="shark" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png" width="120px">
+          <p class="userstats">{{ chapter['cb'] + chapter['pc'] + chapter['te']}} Total points</p>
+
+        <p>Spent: </p>
+        <p><strong>Current balance: {{chapter['balance']}}</strong></p>
+
+      </div>
+    </div>
+</div>
+{% endblock %}

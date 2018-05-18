@@ -44,9 +44,9 @@ def categories():
         db = get_db()
         # Add to the database
         db.execute(
-            'INSERT INTO action_list (title, description, type)'
-            ' Values (?, ?, ?)',
-            (title, description, type)
+        'INSERT INTO action_list (title, description, type)'
+        ' Values (?, ?, ?)',
+        (title, description, type)
         )
         db.commit()
     return render_template('admin/categories.html')
@@ -65,7 +65,12 @@ def activities():
         # If we post to the page, add the activity to the action table
         activity = request.form['activity']
         points = request.form['points']
-        logged_chapter = request.form['chapter']
+        # If the user is an Administrator or Staffer, they can use the select
+        if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer':
+            logged_chapter = request.form['chapter']
+        # If the user is a chapter, they can only log points for themselves
+        else:
+            logged_chapter = g.user['username']
         # This returns the type of activity, by searching by title
         type = db.execute(
         'SELECT type FROM action_list WHERE title LIKE ?', (activity,)
@@ -77,7 +82,7 @@ def activities():
         )
         # We also add to the balance of the logged chapter
         db.execute(
-        'UPDATE user SET balance = ? Where username = ?',
+        'UPDATE user SET balance = balance + ? Where username = ?',
         (int(points), logged_chapter)
         )
         # Update Chapter Building, Policy Change, or Training and Education

@@ -4,12 +4,12 @@
 
   {% block content %}
   <div class="centered-div">
-    {% if g.user['permissions'] == 'admin' %}
+    {% if g.user['permissions'] == 'Admin' %}
       <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
       <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a></a>
       {% endif %}
 
-    {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' or g.user['permissions'] == 'chapter'%}
+    {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
       <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a></a>
       <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a></a>
       {% else %}
