@@ -9,15 +9,14 @@ CREATE TABLE action (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   note TEXT,
-  points INTEGER NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES user (id)
+  points INTEGER NOT NULL
 );
 
 CREATE TABLE action_list (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   description TEXT,
-  type TEXT NOT NULL,
+  type TEXT NOT NULL
 );
 
 CREATE TABLE spending (

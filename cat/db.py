@@ -3,6 +3,7 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from werkzeug.security import generate_password_hash
 
 
 def get_db():
@@ -36,6 +37,12 @@ def init_db():
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+
+    db.execute(
+        'INSERT INTO user (username, password, permissions) VALUES (?, ?, ?)',
+        ('admin', generate_password_hash('admin'), 'Admin')
+    )
+    db.commit()
 
 
 @click.command('init-db')
