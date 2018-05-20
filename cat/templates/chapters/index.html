@@ -5,14 +5,12 @@
 {% endblock %}
 
 {% block content %}
-<div class = "centered-div feed-div"
+<div>
   {% for chapter in chapters %}
     <article class="post">
-      <header>
         <div>
           <div class="about"><a href="{{url_for('chapters.chapter', username=chapter['Username']) }}">{{ chapter['Username'] }}</a></div>
         </div>
-      </header>
     </article>
     {% if not loop.last %}
       <hr>
