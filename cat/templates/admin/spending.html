@@ -15,14 +15,14 @@
     <label for="cost">Points</label>
     <input name="cost" class="form-control" id="points" placeholder="Points">
   </div>
-  {% if g.user['permissions'] == 'admin' or g.user['permissions'] == 'staffer' %}
 
+  {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
   <div class="form-group">
   <label for="chapter">Chapter</label>
   <select name="chapter" class="form-control" id="chapter">
-    <option>Placeholder</option>
-    <option>Placeholder</option>
-    <option>Placeholder</option>
+    {% for chapter in chapters %}
+    <option>{{chapter.username}}</option>
+    {% endfor %}
   </select>
 </div>
 {% endif %}
