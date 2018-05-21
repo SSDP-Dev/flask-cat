@@ -96,14 +96,14 @@ def activities():
             db.commit()
         elif type == "Community Building":
             db.execute(
-            'UPDATE user SET cb = ? Where username = ?',
+            'UPDATE user SET cb = cb + ? Where username = ?',
             (int(points), logged_chapter)
             )
             db.commit()
 
         elif type == "Training and Education":
             db.execute(
-            'UPDATE user SET te = ? Where username = ?',
+            'UPDATE user SET te = cb + ? Where username = ?',
             (int(points), logged_chapter)
             )
             db.commit()
@@ -124,10 +124,22 @@ def spending():
         cost = request.form['cost']
         chapter = request.form['chapter']
         db = get_db()
+
+        chapter_id = db.execute(
+        'SELECT id FROM user WHERE username LIKE ?',
+        (chapter,)
+        ).fetchone()['id']
+
+        db.execute(
+        'UPDATE user SET balance = balance - ? Where username = ?',
+        (int(cost), chapter,)
+        )
+
         db.execute(
         'INSERT INTO spending (title, points, author_id)'
         ' Values (?, ?, ?)',
-        (item, cost, chapter)
+        (item, int(cost), int(chapter_id),)
         )
+
         db.commit()
     return render_template('admin/spending.html', chapters=chapters, items=items)
