@@ -8,7 +8,8 @@
 <div class="col-sm">
   <form method="post">
   <div class="form-group">
-    <select name="chapter" class="form-control" id="chapter">
+    <label for="item">Item</label>
+    <select name="item" class="form-control" id="item">
       {% for item in items %}
       <option>{{item.title}}</option>
       {% endfor %}
