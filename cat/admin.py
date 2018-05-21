@@ -21,14 +21,15 @@ def users():
     # When someone POSTs to the page, grab the info from the form
     if request.method == 'POST':
         username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
         permissions = request.form['permissions']
         db = get_db()
         # Add to the database, with a hashed password and values at 0
         db.execute(
-        'INSERT INTO user (username, password, permissions, cb, pc, te, balance)'
-        ' Values (?, ?, ?, 0, 0, 0, 0)',
-        (username, generate_password_hash(password), permissions)
+        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance)'
+        ' Values (?, ?, ?, ?, 0, 0, 0, 0)',
+        (username, generate_password_hash(password), email, permissions)
         )
         db.commit()
     return render_template('admin/users.html')
