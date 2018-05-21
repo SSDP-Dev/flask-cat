@@ -14,17 +14,17 @@ bp = Blueprint('chapters', __name__)
 def index():
     db = get_db()
     chapters = db.execute(
-        'SELECT username, cb, pc, te, permissions'
+        'SELECT username, cb, pc, te, permissions, url'
         ' FROM user'
         ' ORDER BY username ASC'
     ).fetchall()
     return render_template('chapters/index.html', chapters=chapters)
 
-def get_chapter(username):
+def get_chapter(url):
     chapter = get_db().execute(
-    'SELECT username, cb, pc, te, balance'
-    ' FROM user WHERE username = ?',
-    (username,)
+    'SELECT username, cb, pc, te, balance, url'
+    ' FROM user WHERE url = ?',
+    (url,)
     ).fetchone()
 
     if chapter is None:
@@ -32,9 +32,9 @@ def get_chapter(username):
 
     return chapter
 
-@bp.route('/<username>/', methods=('GET', 'POST'))
-def chapter(username):
-    chapter = get_chapter(username)
+@bp.route('/<url>/', methods=('GET', 'POST'))
+def chapter(url):
+    chapter = get_chapter(url)
     raw_cb = chapter['cb']
     raw_pc = chapter['pc']
     raw_te = chapter['te']
