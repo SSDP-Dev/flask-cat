@@ -51,6 +51,13 @@ def init_db():
     #         'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
     #         (user['field2'], generate_password_hash('meowcatgrassroots'), user['field4'], 'Chapter', 0, 0 ,0 , 0))
     # db.commit()
+    # Here's the code to merge the old categories
+    # old_categories = db.execute('SELECT * from dr_taxonomy_term_data').fetchall()
+    # for category in old_categories:
+    #     db.execute(
+    #         'INSERT INTO action_list (title, description, type) VALUES (?, ?, ?)',
+    #         (category['field3'], category['field4'], 'Policy Change'))
+    # db.commit()
 
 @click.command('init-db')
 @with_appcontext
