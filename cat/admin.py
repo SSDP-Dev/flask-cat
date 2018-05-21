@@ -7,6 +7,10 @@ from werkzeug.security import generate_password_hash
 from cat.auth import login_required
 from cat.db import get_db
 
+def makeURL(username):
+    url = username.replace(' ', '-').lower()
+    return url
+
 bp = Blueprint('admin', __name__)
 
 @bp.route('/admin', methods=('GET', 'POST'))
@@ -24,12 +28,13 @@ def users():
         email = request.form['email']
         password = request.form['password']
         permissions = request.form['permissions']
+        url = makeURL(username)
         db = get_db()
         # Add to the database, with a hashed password and values at 0
         db.execute(
-        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance)'
-        ' Values (?, ?, ?, ?, 0, 0, 0, 0)',
-        (username, generate_password_hash(password), email, permissions)
+        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance, url)'
+        ' Values (?, ?, ?, ?, 0, 0, 0, 0, ?)',
+        (username, generate_password_hash(password), email, permissions, url)
         )
         db.commit()
     return render_template('admin/users.html')
