@@ -58,6 +58,12 @@ def init_db():
     #         'INSERT INTO action_list (title, description, type) VALUES (?, ?, ?)',
     #         (category['field3'], category['field4'], 'Policy Change'))
     # db.commit()
+    # More bastardization of this function - updating URLS en masse
+    # chapters = db.execute('SELECT * from user').fetchall()
+    # for chapter in chapters:
+    #     url = chapter['username'].replace(' ', '-').lower()
+    #     db.execute('UPDATE user set url = ? WHERE username = ?', (url, chapter['username'],))
+    # db.commit()
 
 @click.command('init-db')
 @with_appcontext
