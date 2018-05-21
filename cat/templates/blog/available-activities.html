@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block header %}
 <h1>{% block title %}Available Activities{% endblock %}</h1>
 {% endblock %} {% block content %}
+<div class = "col">
 <p>These are all the available activities that your chapter can complete.</p>
 <h2>Chapter Building</h2>
 <div>
@@ -64,4 +65,5 @@
             {% endif %} {% endfor %}
         </tbody>
     </table>
+  </div>
     {% endblock %}
