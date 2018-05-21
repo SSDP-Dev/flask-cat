@@ -33,7 +33,6 @@ def get_chapter(username):
     return chapter
 
 @bp.route('/<username>/', methods=('GET', 'POST'))
-@login_required
 def chapter(username):
     chapter = get_chapter(username)
     raw_cb = chapter['cb']
