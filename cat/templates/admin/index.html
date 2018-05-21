@@ -3,19 +3,26 @@
 {% block title %}Admin{% endblock %}
 
   {% block content %}
-  <div class="centered-div">
     {% if g.user['permissions'] == 'Admin' %}
+    <div class = "col-3">
       <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
-      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a></a>
+    </div>
+    <div class = "col-3">
+      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a>
+    </div>
       {% endif %}
 
     {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
-      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a></a>
-      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a></a>
+    <div class = "col-3">
+      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a>
+    </div>
+    <div class = "col-3">
+
+      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a>
+</div>
       {% else %}
       <h2>You must be logged in to view this screen</h2>
       {% endif %}
 
-    </div>
 
   {% endblock %}
