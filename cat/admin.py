@@ -116,6 +116,9 @@ def spending():
     chapters = db.execute(
     'SELECT username FROM user WHERE permissions LIKE "Chapter"'
     )
+    items = db.execute(
+    'SELECT title FROM spending_list'
+    )
     if request.method == 'POST':
         item = request.form['item']
         cost = request.form['cost']
@@ -127,4 +130,4 @@ def spending():
         (item, cost, chapter)
         )
         db.commit()
-    return render_template('admin/spending.html', chapters=chapters)
+    return render_template('admin/spending.html', chapters=chapters, items=items)
