@@ -14,9 +14,9 @@ bp = Blueprint('chapters', __name__)
 def index():
     db = get_db()
     chapters = db.execute(
-        'SELECT username, cb, pc, te'
+        'SELECT username, cb, pc, te, permissions'
         ' FROM user'
-        ' ORDER BY username DESC'
+        ' ORDER BY username ASC'
     ).fetchall()
     return render_template('chapters/index.html', chapters=chapters)
 
@@ -51,7 +51,7 @@ def chapter(username):
         pc_percent = 100
 
     if te_percent > 100:
-        te_percent = 100            
+        te_percent = 100
 
     points = {'cb': cb_percent, 'pc': pc_percent, 'te': te_percent}
 

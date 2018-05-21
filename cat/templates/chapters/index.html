@@ -8,6 +8,7 @@
 <div class = "centered-div feed-div">
 
   {% for chapter in chapters %}
+  {% if chapter['permissions'] == 'Chapter' %}
     <article class="post">
         <div>
           <div class="about"><a href="{{url_for('chapters.chapter', username=chapter['Username']) }}">{{ chapter['Username'] }}</a></div>
@@ -15,6 +16,7 @@
     </article>
     {% if not loop.last %}
       <hr>
+    {% endif %}
     {% endif %}
   {% endfor %}
 </div>
