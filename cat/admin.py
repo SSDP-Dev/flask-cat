@@ -112,6 +112,10 @@ def activities():
 
 @bp.route('/admin/spending', methods=('GET', 'POST'))
 def spending():
+    db = get_db()
+    chapters = db.execute(
+    'SELECT username FROM user WHERE permissions LIKE "Chapter"'
+    )
     if request.method == 'POST':
         item = request.form['item']
         cost = request.form['cost']
@@ -123,4 +127,4 @@ def spending():
         (item, cost, chapter)
         )
         db.commit()
-    return render_template('admin/spending.html')
+    return render_template('admin/spending.html', chapters=chapters)
