@@ -43,7 +43,14 @@ def init_db():
         ('admin', generate_password_hash('admin'), 'tyler@ssdp.org', 'Admin', 0, 0 ,0 , 0)
     )
     db.commit()
-
+    # I couldn't figure out how to make another click command
+    # So I've just been cannabilizing this function to mege the old database
+    # old_users = db.execute('SELECT * from dr_users').fetchall()
+    # for user in old_users:
+    #     db.execute(
+    #         'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    #         (user['field2'], generate_password_hash('meowcatgrassroots'), user['field4'], 'Chapter', 0, 0 ,0 , 0))
+    # db.commit()
 
 @click.command('init-db')
 @with_appcontext
