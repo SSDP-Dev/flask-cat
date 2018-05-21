@@ -115,9 +115,9 @@ def delete(id):
 def leaderboard():
     db = get_db()
     chapters = db.execute(
-        'SELECT username, cb, pc, te, balance, permissions'
-        ' FROM user'
-        ' ORDER BY balance DESC'
+        "SELECT username, cb, pc, te, balance, permissions"
+        " FROM user WHERE permissions LIKE 'Chapter'"
+        " ORDER BY balance DESC"
     ).fetchall()
     return render_template('blog/leaderboard.html', chapters=chapters)
 

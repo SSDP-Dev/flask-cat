@@ -25,7 +25,6 @@
                             </thead>
                             <tbody>
                               {% for chapter in chapters %}
-                              {% if chapter['permissions'] == 'Chapter' %}
                                 <tr class="odd views-row-first">
                                     <td class="views-field views-field-counter views-align-right rank">
                                         <span>{{ loop.index }}</span> </td>
@@ -34,7 +33,6 @@
                                     </td>
                                     <td class="views-field views-field-field-point-value active">{{chapter['balance']}}</td>
                                 </tr>
-                                {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
