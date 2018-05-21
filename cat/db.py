@@ -39,8 +39,8 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
     db.execute(
-        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        ('admin', generate_password_hash('admin'), 'tyler@ssdp.org', 'Admin', 0, 0 ,0 , 0)
+        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        ('admin', generate_password_hash('admin'), 'tyler@ssdp.org', 'Admin', 0, 0 ,0 , 0, 'admin')
     )
     db.commit()
     # I couldn't figure out how to make another click command
