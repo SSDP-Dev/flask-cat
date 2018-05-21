@@ -123,7 +123,12 @@ def leaderboard():
 
 @bp.route('/available-activities')
 def availableActivities():
-    return render_template('blog/available-activities.html')
+    db = get_db()
+    activities = db.execute(
+    'SELECT title, description, type'
+    ' FROM action_list'
+    ).fetchall()
+    return render_template('blog/available-activities.html', activities=activities)
 
 @bp.route('/faq')
 def faq():
