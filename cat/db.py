@@ -39,8 +39,8 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
     db.execute(
-        'INSERT INTO user (username, password, permissions) VALUES (?, ?, ?)',
-        ('admin', generate_password_hash('admin'), 'Admin')
+        'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        ('admin', generate_password_hash('admin'), 'tyler@ssdp.org', 'Admin', 0, 0 ,0 , 0)
     )
     db.commit()
 
