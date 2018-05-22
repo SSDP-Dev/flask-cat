@@ -29,7 +29,7 @@
                                     <td class="views-field views-field-counter views-align-right rank">
                                         <span>{{ loop.index }}</span> </td>
                                     <td class="views-field views-field-name-1">
-                                      <a href="{{url_for('chapters.chapter', username=chapter['Username']) }}">{{chapter['Username']}}</a>
+                                      <a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{chapter['Username']}}</a>
                                     </td>
                                     <td class="views-field views-field-field-point-value active">{{chapter['balance']}}</td>
                                 </tr>

@@ -7,12 +7,9 @@ from werkzeug.security import generate_password_hash
 from cat.auth import login_required
 from cat.db import get_db
 
-LEFT, RIGHT, UP, DOWN, RESET = "left", "right", "up", "down", "reset"
+CLEAR, RESET = "clear", "reset"
 AVAILABLE_COMMANDS = {
-    'Left': LEFT,
-    'Right': RIGHT,
-    'Up': UP,
-    'Down': DOWN,
+    'Clear': CLEAR,
     'Reset': RESET
 }
 
@@ -160,8 +157,12 @@ def spending():
 
 @bp.route('/admin/<cmd>')
 def command(cmd=None):
+    db = get_db()
     if cmd == RESET:
-       camera_command = "X"
+       db.execute(
+       'UPDATE user SET balance = 0'
+       )
+       db.commit()
        response = "Resetting ..."
     else:
         camera_command = cmd[0].upper()
