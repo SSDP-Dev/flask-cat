@@ -160,7 +160,7 @@ def command(cmd=None):
     db = get_db()
     if cmd == RESET:
        db.execute(
-       'UPDATE user SET balance = 0'
+       'UPDATE user SET balance = 10'
        )
        db.commit()
        response = "Resetting ..."

@@ -13,7 +13,7 @@
 
     {% for label, command in commands.items() %}
     <div class = "col-3">
-    <button type="button" class="btn btn-info" value="{{ command }}">
+    <button class="btn btn-info command command-{{ command }}" value="{{ command }}">
         {{ label }}
     </button>
   </div>
