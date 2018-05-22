@@ -13,9 +13,9 @@ from werkzeug.security import generate_password_hash
 from cat.auth import login_required
 from cat.db import get_db
 
-CLEAR, RESET = "clear", "reset"
+BACKUP, RESET = "backup", "reset"
 AVAILABLE_COMMANDS = {
-    'Clear': CLEAR,
+    'Backup': BACKUP,
     'Reset': RESET
 }
 
