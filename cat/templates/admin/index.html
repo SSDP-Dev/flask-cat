@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin{% endblock %}
+
+  {% block content %}
+</div>
+    {% if g.user['permissions'] == 'Admin' %}
+    <div class = "centered-div">
+      <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
+      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a>
+    {% for label, command in commands.items() %}
+    <button class="btn btn-info command command-{{ command }}" value="{{ command }}">{{ label }}</button>
+{% endfor %}
+      {% endif %}
+
+    {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
+      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a>
+
+      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a>
+</div>
+      {% else %}
+      <h2>You must be logged in to view this screen</h2>
+      {% endif %}
+
+      <script>
+      // Only run what comes next *after* the page has loaded
+      addEventListener("DOMContentLoaded", function() {
+        // Grab all of the elements with a class of command
+        // (which all of the buttons we just created have)
+        var commandButtons = document.querySelectorAll(".command");
+        for (var i=0, l=commandButtons.length; i<l; i++) {
+          var button = commandButtons[i];
+          // For each button, listen for the "click" event
+          button.addEventListener("click", function(e) {
+            // When a click happens, stop the button
+            // from submitting our form (if we have one)
+            e.preventDefault();
+
+            var clickedButton = e.target;
+            var command = clickedButton.value;
+
+            // Now we need to send the data to our server
+            // without reloading the page - this is the domain of
+            // AJAX (Asynchronous JavaScript And XML)
+            // We will create a new request object
+            // and set up a handler for the response
+            var request = new XMLHttpRequest();
+            request.onload = function() {
+                alert(request.responseText);
+            };
+            // We point the request at the appropriate command
+            request.open("GET", "/admin/" + command, true);
+            // and then we send it off
+            request.send();
+          });
+        }
+      }, true);
+      </script>
+  {% endblock %}

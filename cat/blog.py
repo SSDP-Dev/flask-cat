@@ -11,12 +11,12 @@ bp = Blueprint('blog', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    activities = db.execute(
-        'SELECT p.id, title, created, author_id, username, points, note'
-        ' FROM action p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
+    actions = db.execute(
+    'SELECT title, author_id, points, note'
+    ' FROM action'
+    ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', activities=activities)
+    return render_template('blog/index.html', actions=actions)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -110,3 +110,30 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+@bp.route('/leaderboard')
+def leaderboard():
+    db = get_db()
+    chapters = db.execute(
+        "SELECT username, cb, pc, te, balance, permissions"
+        " FROM user WHERE permissions LIKE 'Chapter'"
+        " ORDER BY balance DESC"
+    ).fetchall()
+    return render_template('blog/leaderboard.html', chapters=chapters)
+
+@bp.route('/available-activities')
+def availableActivities():
+    db = get_db()
+    activities = db.execute(
+    'SELECT title, description, type'
+    ' FROM action_list'
+    ).fetchall()
+    return render_template('blog/available-activities.html', activities=activities)
+
+@bp.route('/faq')
+def faq():
+    return render_template('blog/faq.html')
+
+@bp.route('/store')
+def store():
+    return render_template('blog/store.html')

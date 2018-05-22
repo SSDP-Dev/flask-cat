@@ -1,3 +1,73 @@
 body {
   background-color: #fff;
 }
+
+.btn-primary {
+  margin:0;
+}
+
+.centered-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#buckets {
+	padding-bottom: 20px;
+	height: 200px;
+	float: left;
+}
+
+.vertical .progress-bar {
+	float: left;
+	height: 250px;
+	width: 100px;
+	margin-right: 20px;
+  background-color: #fff;
+}
+
+.vertical .progress-track {
+	position: relative;
+	width: 100px;
+	height: 100%;
+	background: #ebebeb;
+}
+
+.progress-fill {
+  position: absolute;
+  bottom: 0;
+  background: #FAA732;
+  width: 100px;
+  display: block;
+}
+
+.progress-label, .point-decl {
+  color: #000;
+}
+
+p.point-decl {
+	position: absolute;
+	top: 92%;
+	width: 100%;
+	z-index: 99;
+	text-align: center;
+	color: #FFF;
+	background: #757575;
+	border-radius: 2px;
+}
+
+#point-count {
+	padding: 0;
+	text-align: center;
+  float: right;
+}
+
+.points-earned {
+	text-align: center;
+}
+
+.feed-div {
+  overflow-y: auto;
+  height: 50%;
+}

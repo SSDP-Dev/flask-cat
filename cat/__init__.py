@@ -32,9 +32,18 @@ def create_app(test_config=None):
     from . import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/leaderboard', endpoint='leaderboard')
+    app.add_url_rule('/available-activities', endpoint='availableActivities')
+    app.add_url_rule('/faq', endpoint='faq')
+    app.add_url_rule('/store', endpoint='store')
+
 
     from . import chapters
     app.register_blueprint(chapters.bp)
     app.add_url_rule('/chapters', endpoint='index')
+
+    from . import admin
+    app.register_blueprint(admin.bp)
+    app.add_url_rule('/admin', endpoint='index')
 
     return app

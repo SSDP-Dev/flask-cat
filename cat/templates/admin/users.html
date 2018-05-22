@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Create Users{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% if g.user['permissions'] == 'Admin' %}
+<div class="col">
+    <h2>Add Users</h2>
+  <form method="post">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input name="username" class="form-control" id="username" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="username">Email</label>
+    <input name="email" class="form-control" id="email" placeholder="Enter Email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input name="password" class="form-control" id="password" placeholder="Password">
+  </div>
+  <div class="form-group">
+  <label for="permissions">Permissions</label>
+  <select name="permissions" class="form-control" id="Permissions">
+    <option>Chapter</option>Password
+    <option>Staffer</option>
+    <option>Admin</option>
+  </select>
+</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% else %}
+<h2>Restricted</h2>
+{% endif %}
+{% endblock %}

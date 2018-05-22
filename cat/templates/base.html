@@ -1,25 +1,37 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %} - SSDP</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
-<nav>
-  <h1>Flaskr</h1>
-  <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %}
-      <li><a href="{{ url_for('auth.register') }}">Register</a>
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
-    {% endif %}
-  </ul>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <section class="container">
+        <a class="navbar-brand" href="/">Flask CAT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{url_for('chapters.index')}}">Chapters</a>
+                <a class="nav-item nav-link" href="{{url_for('blog.leaderboard')}}">Leaderboard</a>
+                <a class="nav-item nav-link" href="{{url_for('blog.availableActivities')}}">Available Activities</a>
+                <a class="nav-item nav-link" href="{{url_for('blog.faq')}}">How-to/FAQ</a>
+                <a class="nav-item nav-link" href="{{url_for('blog.store')}}">Store</a> {% if g.user %}
+                <a class="nav-item nav-link" href="{{url_for('admin.index')}}">Control Panel</a>
+                <a class="nav-item nav-link" href="{{ url_for('auth.logout')}}">Log Out</a> {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('auth.login')}}">Log In</a> {% endif %}
+            </div>
+    </section>
+    </div>
 </nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
+<section class="container">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
+    {% endfor %}
+    <div class="row">
+    {% block content %}
+    {% endblock %}
+  </div>
 </section>
