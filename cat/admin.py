@@ -165,11 +165,12 @@ def spending():
 def command(cmd=None):
     db = get_db()
     if cmd == RESET:
-       db.execute(
-       'UPDATE user SET balance = 1000'
-       )
+       db.execute('UPDATE user SET cb = 0')
+       db.execute('UPDATE user SET pc = 0')
+       db.execute('UPDATE user SET te = 0')
+
        db.commit()
-       response = "Reset balances to 1000"
+       response = "Reset point counts"
     else:
         backupdir = os.getcwd() + '/backups'
         dbfile = os.getcwd() + '/instance/flaskr.sqlite'
