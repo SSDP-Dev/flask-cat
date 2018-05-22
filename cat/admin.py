@@ -7,6 +7,15 @@ from werkzeug.security import generate_password_hash
 from cat.auth import login_required
 from cat.db import get_db
 
+LEFT, RIGHT, UP, DOWN, RESET = "left", "right", "up", "down", "reset"
+AVAILABLE_COMMANDS = {
+    'Left': LEFT,
+    'Right': RIGHT,
+    'Up': UP,
+    'Down': DOWN,
+    'Reset': RESET
+}
+
 def makeURL(username):
     url = username.replace(' ', '-').lower()
     return url
@@ -17,7 +26,7 @@ bp = Blueprint('admin', __name__)
 # Return the index page for the admin panel.
 # This is mostly just a landing page to send us to the real controls.
 def index():
-    return render_template('admin/index.html')
+    return render_template('admin/index.html', commands=AVAILABLE_COMMANDS)
 
 @bp.route('/admin/users', methods=('GET', 'POST'))
 # This page allows us to add users to the database.
@@ -148,3 +157,15 @@ def spending():
 
         db.commit()
     return render_template('admin/spending.html', chapters=chapters, items=items)
+
+@bp.route('/admin/<cmd>')
+def command(cmd=None):
+    if cmd == RESET:
+       camera_command = "X"
+       response = "Resetting ..."
+    else:
+        camera_command = cmd[0].upper()
+        response = "Moving {}".format(cmd.capitalize())
+
+    # ser.write(camera_command)
+    return response, 200, {'Content-Type': 'text/plain'}
