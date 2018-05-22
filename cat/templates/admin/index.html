@@ -3,30 +3,32 @@
 {% block title %}Admin{% endblock %}
 
   {% block content %}
+</div>
     {% if g.user['permissions'] == 'Admin' %}
+    <div class = "row">
     <div class = "col-3">
       <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
     </div>
     <div class = "col-3">
       <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a>
     </div>
-
     {% for label, command in commands.items() %}
     <div class = "col-3">
-    <button class="btn btn-info command command-{{ command }}" value="{{ command }}">
-        {{ label }}
-    </button>
+    <button class="btn btn-info command command-{{ command }}" value="{{ command }}">{{ label }}</button>
   </div>
 {% endfor %}
+</div>
       {% endif %}
 
     {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
+    <div class = "row">
     <div class = "col-3">
       <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a>
     </div>
     <div class = "col-3">
 
       <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a>
+</div>
 </div>
       {% else %}
       <h2>You must be logged in to view this screen</h2>

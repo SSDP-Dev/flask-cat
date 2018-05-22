@@ -1,3 +1,9 @@
+import argparse
+import sqlite3
+import shutil
+import time
+import os
+
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -160,13 +166,29 @@ def command(cmd=None):
     db = get_db()
     if cmd == RESET:
        db.execute(
-       'UPDATE user SET balance = 10'
+       'UPDATE user SET balance = 1000'
        )
        db.commit()
-       response = "Resetting ..."
+       response = "Reset balances to 1000"
     else:
-        camera_command = cmd[0].upper()
-        response = "Moving {}".format(cmd.capitalize())
+        backupdir = os.getcwd() + '/backups'
+        dbfile = os.getcwd() + '/instance/flaskr.sqlite'
+        # Create a timestamped database copy
+        if not os.path.isdir(backupdir):
+            raise Exception("Backup directory does not exist: {}".format(backupdir))
 
-    # ser.write(camera_command)
+        backup_file = os.path.join(backupdir, os.path.basename(dbfile) +
+                                   time.strftime("-%Y%m%d-%H%M%S"))
+
+        connection = sqlite3.connect(dbfile)
+        cursor = connection.cursor()
+
+        # Lock database before making a backup
+        cursor.execute('begin immediate')
+        # Make new backup file
+        shutil.copyfile(dbfile, backup_file)
+        print ("\nCreating {}...".format(backup_file))
+        # Unlock database
+        connection.rollback()
+        response = "Backed up database"
     return response, 200, {'Content-Type': 'text/plain'}
