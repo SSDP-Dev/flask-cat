@@ -15,7 +15,9 @@
                 <a class="nav-item nav-link" href="{{url_for('blog.leaderboard')}}">Leaderboard</a>
                 <a class="nav-item nav-link" href="{{url_for('blog.availableActivities')}}">Available Activities</a>
                 <a class="nav-item nav-link" href="{{url_for('blog.faq')}}">How-to/FAQ</a>
-                <a class="nav-item nav-link" href="{{url_for('blog.store')}}">Store</a> {% if g.user %}
+                <a class="nav-item nav-link" href="{{url_for('blog.store')}}">Store</a>
+                <a class="nav-item nav-link" href="{{url_for('admin.stats')}}">Stats</a>
+                {% if g.user %}
                 <a class="nav-item nav-link" href="{{url_for('admin.index')}}">Control Panel</a>
                 <a class="nav-item nav-link" href="{{ url_for('auth.logout')}}">Log Out</a> {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('auth.login')}}">Log In</a> {% endif %}
@@ -30,7 +32,7 @@
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
-    <div class="row">
+    <div class="row" style="margin-top:100px">
     {% block content %}
     {% endblock %}
   </div>

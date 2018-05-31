@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
-
 {% block header %}
-  <h1>{% block title %}Chapters{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 <div class = "col">
-
+  <h1>{% block title %}Chapters{% endblock %}</h1>
   {% for chapter in chapters %}
     <article class="post">
         <div>
-
           <div class="about"><a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{ chapter['Username'] }}</a></div>
         </div>
     </article>

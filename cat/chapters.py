@@ -34,6 +34,12 @@ def get_chapter(url):
 
 @bp.route('/<url>/', methods=('GET', 'POST'))
 def chapter(url):
+    db = get_db()
+    target_user = db.execute('SELECT username from user where url = ?',
+    (url,)).fetchone()
+    actions = db.execute(
+    'SELECT * from action where author_id = ?', (target_user)
+    ).fetchall()
     chapter = get_chapter(url)
     raw_cb = chapter['cb']
     raw_pc = chapter['pc']
@@ -54,4 +60,4 @@ def chapter(url):
 
     points = {'cb': cb_percent, 'pc': pc_percent, 'te': te_percent}
 
-    return render_template('chapters/chapter.html', chapter=chapter, points = points)
+    return render_template('chapters/chapter.html', chapter=chapter, points = points, actions=actions)

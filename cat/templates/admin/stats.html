@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Stats{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-6">
+<p>Community Building Points: {{points['cb']}}</p>
+<p>Policy Change Points: {{points['pc']}}</p>
+<p>Training and Education Points: {{points['te']}}</p>
+<p>Total points earned: {{points['total']}}</p>
+<p>Total points spent: {{points['spending']}}</p>
+<p>High quality community builders: {{hq['cb']}}</p>
+<p>High quality policy changers: {{hq['pc']}}</p>
+<p>High quality educators: {{hq['te']}}</p>
+<p>High quality chapters: {{hq['hq']}} ({{hq['percent']}}%)</p>
+
+</div>
+<div class = "col-6">
+{% for activity in activities %}
+<p>{{activity.title}} {{activity_count[activity.title]}}</p>
+{% endfor %}
+</div>
+{% endblock %}

@@ -3,6 +3,8 @@ import sqlite3
 import shutil
 import time
 import os
+import json
+import math
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
@@ -30,6 +32,50 @@ bp = Blueprint('admin', __name__)
 # This is mostly just a landing page to send us to the real controls.
 def index():
     return render_template('admin/index.html', commands=AVAILABLE_COMMANDS)
+
+@bp.route('/admin/stats', methods=('GET', 'POST'))
+# Return the index page for the admin panel.
+# This is mostly just a landing page to send us to the real controls.
+def stats():
+    db = get_db()
+    cb = db.execute(
+    'select sum(action.points)'
+    ' FROM action'
+    ' INNER JOIN action_list ON action.title=action_list.title'
+    ' where action_list.type="Community Building"'
+    ).fetchone()[0]
+    pc = db.execute(
+    'select sum(action.points)'
+    ' FROM action'
+    ' INNER JOIN action_list ON action.title=action_list.title'
+    ' where action_list.type="Policy Change"'
+    ).fetchone()[0]
+    te = db.execute(
+    'select sum(action.points)'
+    ' FROM action'
+    ' INNER JOIN action_list ON action.title=action_list.title'
+    ' where action_list.type="Training and Education"'
+    ).fetchone()[0]
+    total = db.execute(
+    ' select sum(action.points)'
+    ' FROM action'
+    ' INNER JOIN action_list ON action.title=action_list.title'
+    ).fetchone()[0]
+    hqcb = db.execute('select count(*) from user where cb > 75').fetchone()[0]
+    hqpc = db.execute('select count(*) from user where pc > 75').fetchone()[0]
+    hqte = db.execute('select count(*) from user where te > 50').fetchone()[0]
+    rockstars = db.execute('select count(*) from user where((cb + pc + te) >= 200 ) or (cb >= 75 and pc >= 75) or (cb >= 75 and te >= 50) or (pc >= 75 and te >= 50)').fetchone()[0]
+    total = db.execute('select count(*) from user').fetchone()[0]
+    hqpercent = math.floor((rockstars / total ) * 100)
+    spending = db.execute('select sum(points) from spending').fetchone()[0]
+    activities = db.execute('SELECT title FROM action_list')
+    raw_activity_count = db.execute('select title, count(*) from action group by title')
+    activity_count = {}
+    for row in raw_activity_count.fetchall():
+        activity_count[row[0]] = row[1]
+    points = {'cb': cb, 'pc': pc, 'te': te, 'total': total, 'spending':spending}
+    hq = {'cb': hqcb, 'pc': hqpc, 'te': hqte, 'hq':rockstars, 'percent':hqpercent}
+    return render_template('admin/stats.html', points=points, hq=hq, activities=activities, activity_count=activity_count)
 
 @bp.route('/admin/users', methods=('GET', 'POST'))
 # This page allows us to add users to the database.
@@ -79,6 +125,10 @@ def activities():
     chapters = db.execute(
     'SELECT username FROM user WHERE permissions LIKE "Chapter"'
     )
+    chapter_list = []
+    for x in chapters.fetchall():
+        chapter_list.append((str(x['Username'])))
+
     if request.method == 'POST':
         # If we post to the page, add the activity to the action table
         activity = request.form['activity']
@@ -125,7 +175,7 @@ def activities():
             )
             db.commit()
         db.commit()
-    return render_template('admin/activities.html', activities=activities, chapters=chapters)
+    return render_template('admin/activities.html', activities=activities, chapters=chapters, chapter_list=chapter_list)
 
 @bp.route('/admin/spending', methods=('GET', 'POST'))
 def spending():
@@ -179,7 +229,7 @@ def command(cmd=None):
             raise Exception("Backup directory does not exist: {}".format(backupdir))
 
         backup_file = os.path.join(backupdir, os.path.basename(dbfile) +
-                                   time.strftime("-%Y%m%d-%H%M%S"))
+                                   time.strftime("-%Y%m%d-%H%M%S") + '.sqlite')
 
         connection = sqlite3.connect(dbfile)
         cursor = connection.cursor()

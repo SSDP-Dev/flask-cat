@@ -5,16 +5,25 @@
 {% endblock %}
 
 {% block content %}
+<div class = "col">
   <form method="post">
-    <label for="title">Title</label>
-    <input name="title" id="title"
-      value="{{ request.form['title'] or post['title'] }}" required>
-    <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
-    <input type="submit" value="Save">
+    <div class ="formgroup">
+    <label for="title">{{ request.form['title'] or post['title'] }}</label>
+
+  </div>
+  <div class = "formgroup">
+    <input name="points" id="points" placeholder="{{ request.form['points'] or post['points'] }}">
+  </div>
+  <div class = "formgroup">
+    <textarea name="note" id="note" placeholder="{{ request.form['note'] or post['note'] or 'Note' }}"></textarea>
+  </div>
+  <div class ="formgroup">
+    <input type="submit" class = "btn btn-primary" value="Save">
   </form>
+</div>
   <hr>
   <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+    <input class="btn btn-warning" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
   </form>
+</div>
 {% endblock %}

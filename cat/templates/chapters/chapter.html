@@ -30,13 +30,21 @@
     </div>
     <div id="point-count">
         <div class="points-earned">
-          <img class="shark" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png" width="120px">
-          <p class="userstats">{{ chapter['cb'] + chapter['pc'] + chapter['te']}} Total points</p>
+            <img class="shark" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png" width="120px">
+            <p class="userstats">{{ chapter['cb'] + chapter['pc'] + chapter['te']}} Total points</p>
 
-        <p>Spent: </p>
-        <p><strong>Current balance: {{chapter['balance']}}</strong></p>
-
-      </div>
+            <p>Spent: {{ chapter['cb'] + chapter['pc'] + chapter['te'] - chapter['balance']}} </p>
+            <p><strong>Current balance: {{chapter['balance']}}</strong></p>
+        </div>
     </div>
 </div>
+{% for action in actions %}
+<div class="row">
+    <div class="about">{{ action['author_id'] }} completed an action: {{ action['title'] }} for {{action['points']}} points</div>
+    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+    <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a> {% endif %}
+</div>
+    {% endfor %}
+
+
 {% endblock %}

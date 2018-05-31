@@ -1,45 +1,34 @@
-{% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Leaderboard{% endblock %}</h1>
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
 <div class="col">
-    <a id="main-content"></a>
-    <div class="tabs">
-    </div>
-    <div class="region region-content">
-        <div id="block-system-main" class="block block-system">
-            <div class="content">
-                <div class="view view-leaderboard view-id-leaderboard view-display-id-page view-dom-id-8e88e91a6170ccb4766175235ce6686f jquery-once-1-processed">
-                    <div class="view-content feed-div">
-                        <table class="views-table cols-4">
-                            <thead>
-                                <tr>
-                                    <th class="views-field views-field-counter views-align-right" scope="col">
-                                        Rank </th>
-                                    <th class="views-field views-field-name-1" scope="col">
-                                        Chapter </th>
-                                    <th class="views-field views-field-field-point-value active" scope="col">
-                                      Points                             </th>
-                                    <th class="views-field views-field-picture views-align-center" scope="col">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              {% for chapter in chapters %}
-                                <tr class="odd views-row-first">
-                                    <td class="views-field views-field-counter views-align-right rank">
-                                        <span>{{ loop.index }}</span> </td>
-                                    <td class="views-field views-field-name-1">
-                                      <a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{chapter['Username']}}</a>
-                                    </td>
-                                    <td class="views-field views-field-field-point-value active">{{chapter['balance']}}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <h1>{% block title %}Leaderboard{% endblock %}</h1>
+  <div class="feed-div">
+      <table>
+          <thead>
+              <tr>
+                  <th>Rank</th>
+                  <th>Chapter</th>
+                  <th>Points</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for chapter in chapters %}
+              <tr>
+                  <td>
+                      <span>{{ loop.index }}</span>
+                  </td>
+                  <td>
+                    <a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{chapter['Username']}}</a>
+                  </td>
+                  <td class="views-field views-field-field-point-value active">
+                    {{chapter['balance']}}
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
 </div>
 {% endblock %}

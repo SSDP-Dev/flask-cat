@@ -1,69 +1,78 @@
 {% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Available Activities{% endblock %}</h1>
 {% endblock %} {% block content %}
 <div class = "col">
-<p>These are all the available activities that your chapter can complete.</p>
-<h2>Chapter Building</h2>
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>Activity</th>
-                <th>Description </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for activity in activities %} {% if activity.type == 'Community Building' %}
-            <tr>
-                <td>
+  <h1>{% block title %}Available Activities{% endblock %}</h1>
+  <p>These are all the available activities that your chapter can complete.</p>
+  <h2>Chapter Building</h2>
+  <div>
+      <table>
+          <thead>
+              <tr>
+                  <th>Activity</th>
+                  <th>Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for activity in activities %}
+              {% if activity.type == 'Community Building' %}
+              <tr>
+                  <td>
                     {{ activity.title }}
-                    <td>
-                        {{activity.description}}
-                    </td>
-            </tr>
-            {% endif %} {% endfor %}
-        </tbody>
-    </table>
-    <h2>Policy Change</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Activity</th>
-                <th>Description </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for activity in activities %} {% if activity.type == 'Policy Change' %}
-            <tr>
-                <td>
+                  </td>
+                  <td>
+                    {{activity.description | safe}}
+                  </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+          </tbody>
+      </table>
+      <h2>Policy Change</h2>
+      <table>
+          <thead>
+              <tr>
+                  <th>Activity</th>
+                  <th>Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for activity in activities %}
+              {% if activity.type == 'Policy Change' %}
+              <tr>
+                  <td>
                     {{ activity.title }}
-                    <td>
-                        {{activity.description}}
-                    </td>
-            </tr>
-            {% endif %} {% endfor %}
-        </tbody>
-    </table>
-    <h2>Training and Education</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Activity</th>
-                <th>Description </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for activity in activities %} {% if activity.type == 'Training and Education' %}
-            <tr>
-                <td>
+                  </td>
+                  <td>
+                    {{activity.description | safe}}
+                  </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+          </tbody>
+      </table>
+      <h2>Training and Education</h2>
+      <table>
+          <thead>
+              <tr>
+                  <th>Activity</th>
+                  <th>Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for activity in activities %}
+              {% if activity.type == 'Training and Education' %}
+              <tr>
+                  <td>
                     {{ activity.title }}
-                    <td>
-                        {{activity.description}}
-                    </td>
-            </tr>
-            {% endif %} {% endfor %}
-        </tbody>
-    </table>
-  </div>
-    {% endblock %}
+                  </td>
+                  <td>
+                    {{activity.description | safe}}
+                  </td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+          </tbody>
+      </table>
+    </div>
+</div>
+{% endblock %}

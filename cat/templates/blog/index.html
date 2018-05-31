@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
-
+{% block title %}Feed{% endblock %}
 {% block header %}
-  <h1>{% block title %}Feed{% endblock %}</h1>
 {% endblock %}
-
 {% block content %}
 <div class = "col">
   {% for action in actions %}
@@ -12,8 +10,8 @@
         <div>
           <div class="about">{{ action['author_id'] }} completed an action: {{ action['title'] }} for {{action['points']}} points</div>
         </div>
-        {% if g.user['id'] == action['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=activity['id']) }}">Edit</a>
+        {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+        <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a>
         {% endif %}
       </header>
     </article>
