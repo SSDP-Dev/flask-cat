@@ -65,8 +65,8 @@ def stats():
     hqpc = db.execute('select count(*) from user where pc > 75').fetchone()[0]
     hqte = db.execute('select count(*) from user where te > 50').fetchone()[0]
     rockstars = db.execute('select count(*) from user where((cb + pc + te) >= 200 ) or (cb >= 75 and pc >= 75) or (cb >= 75 and te >= 50) or (pc >= 75 and te >= 50)').fetchone()[0]
-    total = db.execute('select count(*) from user').fetchone()[0]
-    hqpercent = math.floor((rockstars / total ) * 100)
+    total_chapters = db.execute('select count(*) from user').fetchone()[0]
+    hqpercent = math.floor((rockstars / total_chapters ) * 100)
     spending = db.execute('select sum(points) from spending').fetchone()[0]
     activities = db.execute('SELECT title FROM action_list')
     raw_activity_count = db.execute('select title, count(*) from action group by title')
