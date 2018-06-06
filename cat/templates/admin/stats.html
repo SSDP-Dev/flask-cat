@@ -5,21 +5,51 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-6">
-<p>Community Building Points: {{points['cb']}}</p>
-<p>Policy Change Points: {{points['pc']}}</p>
-<p>Training and Education Points: {{points['te']}}</p>
-<p>Total points earned: {{points['total']}}</p>
-<p>Total points spent: {{points['spending']}}</p>
-<p>High quality community builders: {{hq['cb']}}</p>
-<p>High quality policy changers: {{hq['pc']}}</p>
-<p>High quality educators: {{hq['te']}}</p>
-<p>High quality chapters: {{hq['hq']}} ({{hq['percent']}}%)</p>
-
-</div>
-<div class = "col-6">
+<div class = "col">
+  <table class = "table">
+    <tr>
+      <td>Community Building Points</td>
+      <td>{{points['cb']}}</td>
+    </tr>
+    <tr>
+      <td>Policy Change Points</td>
+      <td>{{points['pc']}}</td>
+    </tr>
+    <tr>
+      <td>Training and Education Points</td>
+      <td>{{points['te']}}</td>
+    </tr>
+    <tr>
+      <td>Total Earned</td>
+      <td>{{points['total']}}</td>
+    </tr>
+    <tr>
+      <td>Total Spent</td>
+      <td>{{points['spent']}}</td>
+    </tr>
+    <tr>
+      <td>High Quality Community Builders</td>
+      <td>{{hq['cb']}}</td>
+    </tr>
+    <tr>
+      <td>High Quality Advocates</td>
+      <td>{{hq['pc']}}</td>
+    </tr>
+    <tr>
+      <td>High Quality Educators</td>
+      <td>{{hq['te']}}</td>
+    </tr>
+    <tr>
+      <td>High Quality Chapters</td>
+      <td>{{points['hq']}}</td>
+    </tr>
+  </table>
+<table class = "table">
 {% for activity in activities %}
-<p>{{activity.title}} {{activity_count[activity.title]}}</p>
+<tr>
+<td>{{activity.title}}</td>
+<td>{{activity_count[activity.title]}}</td>
+</tr>
 {% endfor %}
 </div>
 {% endblock %}
