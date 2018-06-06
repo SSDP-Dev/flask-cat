@@ -11,10 +11,24 @@
   <div class="form-group">
     <label for="activity">Activity</label>
     <select name="activity" class="form-control" id="activity">
-      <option>Select activity</option>
-      {% for activity in activities %}
+      <optgroup label = "Movement Building">
+      {% for activity in mb_activities %}
       <option>{{activity.title}}</option>
       {% endfor %}
+    </optgroup>
+    <optgroup label = "Policy Change">
+      {% for activity in pc_activities %}
+    <option>{{activity.title}}</option>
+    {% endfor %}
+
+  </optgroup>
+  <optgroup label = "Training and Education">
+    {% for activity in te_activities %}
+
+  <option>{{activity.title}}</option>
+  {% endfor %}
+
+</optgroup>
     </select>
   </div>
   <div class="form-group">
@@ -26,7 +40,8 @@
   <div class="form-group">
     {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
 <form autocomplete="off" action="/action_page.php">
-  <div class="autocomplete" style="width:300px;">
+<label for ="chapter">Chapter</label>
+  <div class="autocomplete">
     <input id="myInput" type="text" name="chapter" placeholder="Chapter">
   </div>
 </form>
@@ -36,7 +51,7 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,

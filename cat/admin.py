@@ -119,8 +119,12 @@ def categories():
 # This page allows us to log activities to the database.
 def activities():
     db = get_db()
-    # Auto populate the list of activities from database
-    activities = db.execute('SELECT title FROM action_list')
+    # Auto populate the list of Movemben Building activities from database
+    mb_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Community Building"')
+    # Auto populate the list of Movemben Building activities from database
+    pc_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Policy Change"')
+    # Auto populate the list of Movemben Building activities from database
+    te_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Training and Education"')
     # Auto populate the list of chapters from the database
     chapters = db.execute(
     'SELECT username FROM user WHERE permissions LIKE "Chapter"'
@@ -175,7 +179,7 @@ def activities():
             )
             db.commit()
         db.commit()
-    return render_template('admin/activities.html', activities=activities, chapters=chapters, chapter_list=chapter_list)
+    return render_template('admin/activities.html', mb_activities=mb_activities, pc_activities=pc_activities, te_activities=te_activities, chapters=chapters, chapter_list=chapter_list)
 
 @bp.route('/admin/spending', methods=('GET', 'POST'))
 def spending():
