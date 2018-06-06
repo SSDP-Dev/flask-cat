@@ -33,7 +33,7 @@
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
-    <div class="row" style="margin-top:100px">
+    <div class="row">
     {% block content %}
     {% endblock %}
   </div>
