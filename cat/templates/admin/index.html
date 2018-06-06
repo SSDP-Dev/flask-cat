@@ -1,5 +1,4 @@
 {% extends 'base.html' %} {% block title %}Admin{% endblock %} {% block content %}
-<div class = "container">
 <div class="col">
     {% if g.user['permissions'] == 'Admin' %}
         <a href={ { url_for( 'admin.users') }}><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Create Users</button> </a>
@@ -13,7 +12,6 @@
     {% else %}
     <h2>You must be logged in to view this screen</h2>
     {% endif %}
-</div>
 </div>
 <script>
     // Only run what comes next *after* the page has loaded
