@@ -4,15 +4,13 @@
 {% endblock %}
 {% block content %}
 <div class = "col">
+  <h1>Feed</h1>
   {% for action in actions %}
     <article class="post">
       <header>
         <div>
           <div class="about">{{ action['author_id'] }} completed an action: {{ action['title'] }} for {{action['points']}} points</div>
         </div>
-        {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
-        <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a>
-        {% endif %}
       </header>
     </article>
     {% if not loop.last %}
