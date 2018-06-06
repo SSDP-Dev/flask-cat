@@ -4,22 +4,22 @@
   <h1>{% block title %}Available Activities{% endblock %}</h1>
   <p>These are all the available activities that your chapter can complete.</p>
   <h2>Chapter Building</h2>
-  <div>
-      <table>
+  <div class = "feed-div">
+      <table class = "table">
           <thead>
               <tr>
-                  <th>Activity</th>
-                  <th>Description</th>
+                  <th scope = "col">Activity</th>
+                  <th scope = "col">Description</th>
               </tr>
           </thead>
           <tbody>
               {% for activity in activities %}
               {% if activity.type == 'Community Building' %}
               <tr>
-                  <td>
+                  <td valign="top">
                     {{ activity.title }}
                   </td>
-                  <td>
+                  <td valign = "top">
                     {{activity.description | safe}}
                   </td>
               </tr>
@@ -28,11 +28,11 @@
           </tbody>
       </table>
       <h2>Policy Change</h2>
-      <table>
+      <table class = "table">
           <thead>
               <tr>
-                  <th>Activity</th>
-                  <th>Description</th>
+                  <th scope = "col">Activity</th>
+                  <th scope = "col">Description</th>
               </tr>
           </thead>
           <tbody>
@@ -51,11 +51,11 @@
           </tbody>
       </table>
       <h2>Training and Education</h2>
-      <table>
+      <table class = "table">
           <thead>
               <tr>
-                  <th>Activity</th>
-                  <th>Description</th>
+                  <th scope = "col">Activity</th>
+                  <th scope = "col">Description</th>
               </tr>
           </thead>
           <tbody>
