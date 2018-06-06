@@ -1,29 +1,22 @@
-{% extends 'base.html' %}
-
-{% block title %}Admin{% endblock %}
-
-  {% block content %}
-</div>
+{% extends 'base.html' %} {% block title %}Admin{% endblock %} {% block content %}
+<div class = "container">
+<div class="col">
     {% if g.user['permissions'] == 'Admin' %}
-    <div class = "centered-div">
-      <a href= {{ url_for('admin.users') }}><button type="button" class="btn btn-info">Create Users</button> </a>
-      <a href= {{ url_for('admin.categories') }}><button type="button" class="btn btn-info">Create Categories</button> </a>
-    {% for label, command in commands.items() %}
-    <button class="btn btn-info command command-{{ command }}" value="{{ command }}">{{ label }}</button>
-{% endfor %}
-      {% endif %}
-
-    {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
-      <a href= {{ url_for('admin.activities') }}><button type="button" class="btn btn-info">Log Activities</button> </a>
-
-      <a href= {{ url_for('admin.spending') }}><button type="button" class="btn btn-info">Spend Points</button> </a>
+        <a href={ { url_for( 'admin.users') }}><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Create Users</button> </a>
+        <a href={ { url_for( 'admin.categories') }}><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Create Categories</button> </a>
+        {% for label, command in commands.items() %}
+        <button class="btn btn-block btn-primary btn-primary-spacing command command-{{ command }}" value="{{ command }}">{{ label }}</button>
+        {% endfor %}
+        {% endif %} {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
+        <a href={ { url_for( 'admin.activities') }}><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Log Activities</button> </a>
+        <a href={ { url_for( 'admin.spending') }}><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Spend Points</button> </a>
+    {% else %}
+    <h2>You must be logged in to view this screen</h2>
+    {% endif %}
 </div>
-      {% else %}
-      <h2>You must be logged in to view this screen</h2>
-      {% endif %}
-
-      <script>
-      // Only run what comes next *after* the page has loaded
+</div>
+<script>
+    // Only run what comes next *after* the page has loaded
       addEventListener("DOMContentLoaded", function() {
         // Grab all of the elements with a class of command
         // (which all of the buttons we just created have)
@@ -55,5 +48,5 @@
           });
         }
       }, true);
-      </script>
-  {% endblock %}
+</script>
+{% endblock %}

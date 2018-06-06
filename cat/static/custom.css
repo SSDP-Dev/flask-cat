@@ -54,6 +54,15 @@ h5 {
   margin:0;
 }
 
+.btn-primary-spacing
+{
+margin-bottom: 5px !important;
+margin: 0 auto;
+}
+
+.btn-block {
+  max-width: 500px;
+}
 
 /* Navbar Customization */
 .navbar-nav {
