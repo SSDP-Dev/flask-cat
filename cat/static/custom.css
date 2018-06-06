@@ -1,12 +1,66 @@
- @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+/* Directory */
+/* Imports */
+/* Attribute Overrides */
+/* - Tables */
+/* - Buttons */
+/* - Typography */
+/* Navbar Customization */
+/* Custom Classes */
+/* - Autocomplete */
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
 body {
   background-color: #fff;
 }
 
+/* Attribute Overrides */
+/* Tables */
+/* table, tr, td {
+  border:solid;
+} */
+
+th {
+  color: #FAA732;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+}
+
+/* Typography */
+h1 {
+  color: #136F8D;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #636467;
+}
+
+h3 {
+  color: #FAA732;
+}
+
+h4 {
+  color: #136F8D;
+}
+
+h5 {
+  color: #003249;
+}
+
+/* Buttons */
 .btn-primary {
   margin:0;
 }
 
+
+/* Navbar Customization */
+.navbar-nav {
+  text-transform: uppercase;
+}
+
+/* Custom Classes */
 .centered-div {
   position: absolute;
   top: 50%;
@@ -73,6 +127,7 @@ p.point-decl {
   height: 50%;
 }
 
+
 /* For autocomplete */
 .autocomplete {
   /*the container must be positioned relative:*/
@@ -118,32 +173,4 @@ input[type=submit] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
-}
-
-table, tr, td {
-  border:solid;
-}
-
-/*Typography*/
-
-h1 {
-  color: #136F8D;
-  font-family: 'Montserrat';
-  text-transform: uppercase;
-}
-
-h2 {
-  color: #636467;
-}
-
-h3 {
-  color: #FAA732;
-}
-
-h4 {
-  color: #136F8D;
-}
-
-h5 {
-  color: #003249;
 }
