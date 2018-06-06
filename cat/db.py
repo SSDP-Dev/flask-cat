@@ -48,8 +48,8 @@ def init_db():
     # old_users = db.execute('SELECT * from dr_users').fetchall()
     # for user in old_users:
     #     db.execute(
-    #         'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-    #         (user['field2'], generate_password_hash('meowcatgrassroots'), user['field4'], 'Chapter', 0, 0 ,0 , 0))
+    #         'INSERT INTO user (username, password, email, permissions, cb, pc, te, balance, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    #         (user['field2'], generate_password_hash('meowcatgrassroots'), user['field4'], 'Chapter', 0, 0 ,0 , 0, 'placeholder'))
     # db.commit()
     # Here's the code to merge the old categories
     # old_categories = db.execute('SELECT * from dr_taxonomy_term_data').fetchall()
