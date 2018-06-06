@@ -222,6 +222,7 @@ def command(cmd=None):
        db.commit()
        response = "Reset point counts"
     else:
+        #Important to note, you must create a "backup" folder in the root directory
         backupdir = os.getcwd() + '/backups'
         dbfile = os.getcwd() + '/instance/flaskr.sqlite'
         # Create a timestamped database copy
