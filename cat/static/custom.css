@@ -129,9 +129,10 @@ margin: 0 auto;
 }
 
 .points-earned {
+  color: #136F8D;
 	text-align: center;
+  font-weight: bold;
 }
-
 .feed-div {
   overflow-y: auto;
   height: 50%;

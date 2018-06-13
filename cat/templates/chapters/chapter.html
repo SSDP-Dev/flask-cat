@@ -2,68 +2,77 @@
 <h1>{% block title %}{{ chapter['username'] }}{% endblock %}</h1>
 {% endblock %} {% block content %}
 <div class="col">
-  <div class="container">
-    <div class="row no-gutters">
-        <div class="border col-3">
-            <div class="progress-fill" style="height: {{points['cb']}}%"> </div>
-            <p class="progress-label text-center">Chapter Building</p>
-            <span class="point-decl">{{chapter['cb']}} points</span>
-        </div>
-        <div class="border col-3">
-            <div class="progress-fill" style="height:{{points['pc']}}%"></div>
-            <p class ="progress-label text-center">Policy Change</p>
-            <span class = "point-decl"> {{chapter['pc']}} points</span>
-        </div>
-        <div class="border col-3">
-            <div class="progress-fill" style="height:{{points['te']}}%"></div>
-            <p class="progress-label text-center">Training and Education</p>
-            <span class="point-decl">{{chapter['te']}} points</span>
-        </div>
-        <div class="border col-3">
-            <img class="img-responsive" style="max-width: 100%" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png">
-            <span>{{ chapter['cb'] + chapter['pc'] + chapter['te']}} Total points</span>
-
-            <span>Spent: {{ chapter['cb'] + chapter['pc'] + chapter['te'] - chapter['balance']}} </span>
-            <span><strong>Current balance: {{chapter['balance']}}</strong></span></div>
-    </div>
-    <div class="row mt-3">      <h2>Activity Feed</h2>
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="border col-3">
+                <div class="progress-fill" style="height: {{points['cb']}}%"> </div>
+                <p class="progress-label text-center">Chapter Building</p>
+                <span class="point-decl">{{chapter['cb']}} points</span>
+            </div>
+            <div class="border col-3">
+                <div class="progress-fill" style="height:{{points['pc']}}%"></div>
+                <p class="progress-label text-center">Policy Change</p>
+                <span class="point-decl"> {{chapter['pc']}} points</span>
+            </div>
+            <div class="border col-3">
+                <div class="progress-fill" style="height:{{points['te']}}%"></div>
+                <p class="progress-label text-center">Training and Education</p>
+                <span class="point-decl">{{chapter['te']}} points</span>
+            </div>
+            <div class="border col-3">
+              <div class="container">
+              <div class = "row">
+                <img class="img-responsive" style="max-width: 100%" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png">
+              </div>
+              <div class="row">
+                <span class = "points-earned">{{ chapter['cb'] + chapter['pc'] + chapter['te']}}</span>
 </div>
-    <div class="feed-div row mt-3">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Action</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">Note</th>
-                    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
-                    <th scope="col"></th>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for action in actions %}
-                <tr>
-                    <td>
-                        {{ action['title'] }}
-                    </td>
-                    <td>
-                        {{ action['points'] }}
-                    </td>
-                    <td>
-                      {{ action['note'] }}
-                    </td>
-                    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+<div class="row">
+                <span>Spent: {{ chapter['cb'] + chapter['pc'] + chapter['te'] - chapter['balance']}} </span>
+              </div>
+              <div class="row">
+                <span><strong>Current balance: {{chapter['balance']}}</strong></span></div>
+              </div>
+        </div>
+        <div class="row mt-3">
+            <h2>Activity Feed</h2>
+        </div>
+        <div class="feed-div row mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Action</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Note</th>
+                        {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+                        <th scope="col"></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for action in actions %}
+                    <tr>
+                        <td>
+                            {{ action['title'] }}
+                        </td>
+                        <td>
+                            {{ action['points'] }}
+                        </td>
+                        <td>
+                            {{ action['note'] }}
+                        </td>
+                        {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
 
-                    <td>
-                        <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a>
-                    </td>
-                    {% endif %}
+                        <td>
+                            <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a>
+                        </td>
+                        {% endif %}
 
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
