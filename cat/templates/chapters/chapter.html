@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block header %}
 <h1>{% block title %}{{ chapter['username'] }}{% endblock %}</h1>
 {% endblock %} {% block content %}
-<!-- <div class="centered-div"> -->
 <div class="col">
+  <div class="container">
     <div class="row no-gutters">
         <div class="border col-3">
             <div class="progress-fill" style="height: {{points['cb']}}%"> </div>
@@ -26,7 +26,9 @@
             <span>Spent: {{ chapter['cb'] + chapter['pc'] + chapter['te'] - chapter['balance']}} </span>
             <span><strong>Current balance: {{chapter['balance']}}</strong></span></div>
     </div>
-    <div class="feed-div">
+    <div class="row mt-3">      <h2>Activity Feed</h2>
+</div>
+    <div class="feed-div row mt-3">
         <table class="table">
             <thead>
                 <tr>
