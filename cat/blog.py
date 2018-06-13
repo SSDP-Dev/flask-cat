@@ -107,7 +107,7 @@ def delete(id):
 def leaderboard():
     db = get_db()
     chapters = db.execute(
-        "SELECT username, cb, pc, te, balance, permissions"
+        "SELECT username, cb, pc, te, balance, permissions, url"
         " FROM user WHERE permissions LIKE 'Chapter'"
         " ORDER BY balance DESC"
     ).fetchall()
