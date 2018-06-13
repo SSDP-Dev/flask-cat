@@ -32,6 +32,7 @@
                 <tr>
                     <th scope="col">Action</th>
                     <th scope="col">Points</th>
+                    <th scope="col">Note</th>
                     {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
                     <th scope="col"></th>
                     {% endif %}
@@ -45,6 +46,9 @@
                     </td>
                     <td>
                         {{ action['points'] }}
+                    </td>
+                    <td>
+                      {{ action['note'] }}
                     </td>
                     {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
 
