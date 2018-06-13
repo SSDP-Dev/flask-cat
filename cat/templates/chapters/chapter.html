@@ -6,16 +6,18 @@
     <div class="row no-gutters">
         <div class="border col-3">
             <div class="progress-fill" style="height: {{points['cb']}}%"> </div>
-            Chapter Building {{chapter['cb']}} points
+            <span class="progress-label">Chapter Building</span>
+            <span class="point-decl">{{chapter['cb']}} points</span>
         </div>
         <div class="border col-3">
             <div class="progress-fill" style="height:{{points['pc']}}%"></div>
-            Policy Change {{chapter['pc']}} points
+            <span class ="progress-label">Policy Change</span>
+            <span class = "point-decl"> {{chapter['pc']}} points</span>
         </div>
         <div class="border col-3">
             <div class="progress-fill" style="height:{{points['te']}}%"></div>
-            <span>Training and Education</span>
-            <span>{{chapter['te']}} points</span>
+            <span class="progress-label">Training and Education</span>
+            <span class="point-decl">{{chapter['te']}} points</span>
         </div>
         <div class="border col-3">
             <img class="img-responsive" style="max-width: 100%" src="http://ssdp.actioncat.xyz/themes/bartik/images/shark.png">

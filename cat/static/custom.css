@@ -110,9 +110,10 @@ margin: 0 auto;
   color: #000;
 }
 
-p.point-decl {
+.point-decl {
+  bottom: 0;
+  left: 0;
 	position: absolute;
-	top: 92%;
 	width: 100%;
 	z-index: 99;
 	text-align: center;
