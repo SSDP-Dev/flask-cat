@@ -38,13 +38,39 @@
         </div>
     </div>
 </div>
-{% for action in actions %}
-<div class="row">
-    <div class="about">{{ action['author_id'] }} completed an action: {{ action['title'] }} for {{action['points']}} points</div>
-    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
-    <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a> {% endif %}
-</div>
-    {% endfor %}
 
+
+    <div class="feed-div">
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th scope = "col">Action</th>
+                    <th scope = "col">Points</th>
+                    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+                    <th scope = "col"></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+              {% for action in actions %}
+                <tr>
+                    <td>
+                      {{ action['title'] }}
+                    </td>
+                    <td>
+                      {{ action['points'] }}
+                    </td>
+                    {% if g.user['Permissions'] == 'Admin' or g.user['Permissions'] == 'Staffer' %}
+
+                    <td>
+                      <a class="action" href="{{ url_for('blog.update', id=action['id']) }}">Edit</a>
+                    </td>
+                    {% endif %}
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
