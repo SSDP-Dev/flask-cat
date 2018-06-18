@@ -104,6 +104,7 @@ margin: 0 auto;
   background: #FAA732;
   width: 100%;
   display: block;
+  z-index: -1;
 }
 
 .progress-label, .point-decl {
