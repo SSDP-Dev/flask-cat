@@ -76,8 +76,11 @@ def update(id):
     post = get_action(id)
     old_points = post['points']
     author = post['author_id']
-    note = post['note']
-    print(note)
+    # Get title from selected action
+    title = post['title']
+    # Get type from action_list where title == title
+    db = get_db()
+    type = db.execute('SELECT * from action_list WHERE title = ?', (title, )).fetchone()['type']
     if request.method =='POST':
         points = request.form['points']
         note = request.form['note']
@@ -95,6 +98,27 @@ def update(id):
                 (points, note, id)
             )
             db.commit()
+            #If type = policy change, update that field for the user
+            if type == "Policy Change":
+                #Update the policy change poins with differential.
+                db.execute(
+                    'UPDATE user SET pc = pc + ? WHERE username = ?', (points_delta, author,)
+                )
+                db.commit()
+            #If type = community building, update that field for the user
+            elif type == "Community Building":
+                #Update the community building points with differential
+                db.execute(
+                    'UPDATE user SET cb = cb + ? WHERE username = ?', (points_delta, author,)
+                )
+                db.commit()
+            #If type = training and education, update that field for the user
+            elif type == "Training and Education":
+                #Update the T&E points with differential
+                db.execute(
+                    'UPDATE user SET te = te + ? WHERE username = ?', (points_delta, author,)
+                )
+                db.commit()
             return redirect(url_for('blog.update', id=id))
 
     return render_template('blog/update.html', post=post)
