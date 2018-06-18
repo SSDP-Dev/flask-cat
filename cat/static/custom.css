@@ -131,6 +131,7 @@ margin: 0 auto;
 .points-earned {
   color: #136F8D;
   font-weight: bold;
+  margin: 0 auto;
 }
 .feed-div {
   overflow-y: auto;
@@ -182,4 +183,10 @@ input[type=submit] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+
+/* Use the margin 0 auto function */
+
+.margin-center {
+  margin: 0 auto;
 }
