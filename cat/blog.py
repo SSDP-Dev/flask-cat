@@ -76,13 +76,14 @@ def update(id):
     post = get_action(id)
     old_points = post['points']
     author = post['author_id']
-    print(author)
+    note = post['note']
+    print(note)
     if request.method =='POST':
         points = request.form['points']
         note = request.form['note']
         error = None
         #Calculate the differential between the new point count and the old points
-        points_delta = int(old_points) - int(points)
+        points_delta = int(points) -  int(old_points)
         print(points_delta)
         if error is not None:
             flash(error)

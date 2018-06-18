@@ -12,10 +12,10 @@
 
   </div>
   <div class = "formgroup">
-    <input class="form-control"name="points" id="points" placeholder="{{ request.form['points'] or post['points'] }}">
+    <input class="form-control"name="points" id="points" value="{{ post['points'] }}">
   </div>
   <div class = "formgroup">
-    <textarea class="form-control" name="note" id="note" placeholder="{{ request.form['note'] or post['note'] or 'Note' }}"></textarea>
+    <textarea class="form-control" name="note" id="note" >{{ post['note'] }}</textarea>
   </div>
   <div class ="formgroup">
     <input class="form-control" type="submit" class = "btn btn-primary" value="Save">
