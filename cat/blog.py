@@ -80,6 +80,7 @@ def update(id):
     title = post['title']
     # Get type from action_list where title == title
     db = get_db()
+    url = db.execute('SELECT * from user WHERE username = ?', (author,)).fetchone()['url']
     type = db.execute('SELECT * from action_list WHERE title = ?', (title, )).fetchone()['type']
     if request.method =='POST':
         points = request.form['points']
@@ -119,7 +120,7 @@ def update(id):
                     'UPDATE user SET te = te + ? WHERE username = ?', (points_delta, author,)
                 )
                 db.commit()
-            return redirect(url_for('blog.update', id=id))
+            return redirect(url_for('chapters.chapter', url=url))
 
     return render_template('blog/update.html', post=post)
 
