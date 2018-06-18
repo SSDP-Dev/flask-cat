@@ -74,12 +74,16 @@ def get_action(id):
 @login_required
 def update(id):
     post = get_action(id)
-
+    old_points = post['points']
+    author = post['author_id']
+    print(author)
     if request.method =='POST':
         points = request.form['points']
         note = request.form['note']
         error = None
-
+        #Calculate the differential between the new point count and the old points
+        points_delta = int(old_points) - int(points)
+        print(points_delta)
         if error is not None:
             flash(error)
         else:
@@ -90,7 +94,7 @@ def update(id):
                 (points, note, id)
             )
             db.commit()
-            return redirect(url_for('blog.index'))
+            return redirect(url_for('blog.update', id=id))
 
     return render_template('blog/update.html', post=post)
 
