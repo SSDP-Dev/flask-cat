@@ -263,9 +263,9 @@ def userList():
 # List all users and edit links
 def userEdit(url):
     db = get_db()
-    chapter_list = db.execute(
-        "SELECT username, cb, pc, te, balance, permissions, url"
+    user = db.execute(
+        "SELECT username, email, password, permissions, url"
         " FROM user where url = ?"
         " ORDER BY username ASC", (url, )
     ).fetchall()
-    return render_template('admin/user-edit.html', chapter_list=chapter_list)
+    return render_template('admin/user-edit.html', user=user)
