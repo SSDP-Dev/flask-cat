@@ -139,7 +139,7 @@ def leaderboard():
     chapters = db.execute(
         "SELECT username, cb, pc, te, balance, permissions, url"
         " FROM user WHERE permissions LIKE 'Chapter'"
-        " ORDER BY balance DESC"
+        " ORDER BY cb + pc + te DESC"
     ).fetchall()
     return render_template('blog/leaderboard.html', chapters=chapters)
 
