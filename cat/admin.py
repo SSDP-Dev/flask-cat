@@ -34,8 +34,6 @@ def index():
     return render_template('admin/index.html', commands=AVAILABLE_COMMANDS)
 
 @bp.route('/admin/stats', methods=('GET', 'POST'))
-# Return the index page for the admin panel.
-# This is mostly just a landing page to send us to the real controls.
 def stats():
     db = get_db()
     cb = db.execute(
@@ -248,3 +246,8 @@ def command(cmd=None):
         connection.rollback()
         response = "Backed up database"
     return response, 200, {'Content-Type': 'text/plain'}
+
+@bp.route('/admin/user-list', methods=('GET', 'POST'))
+# List all users and edit links
+def userList():
+    return render_template('admin/user-list.html')
