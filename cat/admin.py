@@ -267,5 +267,5 @@ def userEdit(url):
         "SELECT username, email, password, permissions, url"
         " FROM user where url = ?"
         " ORDER BY username ASC", (url, )
-    ).fetchall()
+    ).fetchone()
     return render_template('admin/user-edit.html', user=user)
