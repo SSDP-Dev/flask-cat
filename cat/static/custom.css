@@ -109,6 +109,7 @@ margin: 0 auto;
 
 .progress-label, .point-decl {
   color: #000;
+  word-wrap: break-word;
 }
 
 .point-decl {
