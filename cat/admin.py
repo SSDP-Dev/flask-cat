@@ -250,4 +250,11 @@ def command(cmd=None):
 @bp.route('/admin/user-list', methods=('GET', 'POST'))
 # List all users and edit links
 def userList():
-    return render_template('admin/user-list.html')
+    db = get_db()
+    chapter_list = db.execute(
+        "SELECT username, cb, pc, te, balance, permissions, url"
+        " FROM user"
+        " ORDER BY username ASC"
+    ).fetchall()
+    print(chapter_list)
+    return render_template('admin/user-list.html', chapter_list=chapter_list)

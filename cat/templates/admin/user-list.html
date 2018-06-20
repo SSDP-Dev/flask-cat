@@ -1,1 +1,23 @@
 {% extends 'base.html' %}
+{% block title %}Edit Users{% endblock %}
+{% block content %}
+<div>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th scope = "col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for chapter in chapter_list %}
+            <tr>
+                <td>
+                  <!-- Turn this into edit link -->
+                  <a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{chapter['Username']}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
