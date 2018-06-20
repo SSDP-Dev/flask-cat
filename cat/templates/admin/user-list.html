@@ -13,7 +13,7 @@
             <tr>
                 <td>
                   <!-- Turn this into edit link -->
-                  <a href="{{url_for('chapters.chapter', url=chapter['url']) }}">{{chapter['Username']}}</a>
+                  <a href="{{url_for('admin.userEdit', url=chapter['url']) }}">{{chapter['Username']}}</a>
                 </td>
             </tr>
             {% endfor %}
