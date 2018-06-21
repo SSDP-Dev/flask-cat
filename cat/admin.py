@@ -166,17 +166,17 @@ def categories():
 # This page allows us to log activities to the database.
 def activities():
     db = get_db()
-    # Auto populate the list of Movemben Building activities from database
+    # Retrieve the list of Movement Building activities from database
     mb_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Community Building"')
-    # Auto populate the list of Movemben Building activities from database
+    # Retrieve the list of Policy Change activities from database
     pc_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Policy Change"')
-    # Auto populate the list of Movemben Building activities from database
+    # Retrive the list of Training and Education activities from database
     te_activities = db.execute('SELECT title FROM action_list WHERE type LIKE "Training and Education"')
-    # Auto populate the list of chapters from the database
-    chapters = db.execute(
-    'SELECT username FROM user WHERE permissions LIKE "Chapter"'
-    )
+    # Retrieve the list of chapters from the database
+    chapters = db.execute('SELECT username FROM user WHERE permissions LIKE "Chapter"')
+    # Init an empty list for the chapter listing
     chapter_list = []
+    # Push the usernames into the chapter list for ease of use in search bar on page
     for x in chapters.fetchall():
         chapter_list.append((str(x['Username'])))
 
@@ -184,10 +184,10 @@ def activities():
         # If we post to the page, add the activity to the action table
         activity = request.form['activity']
         points = request.form['points']
-        # If the user is an Administrator or Staffer, they can use the select
+        # If the user is an Administrator or Staffer, they can use the select chapter form, so we pull from it 
         if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer':
             logged_chapter = request.form['chapter']
-        # If the user is a chapter, they can only log points for themselves
+        # If the user is a chapter, they can only log points for themselves, so we default to their username
         else:
             logged_chapter = g.user['username']
         # This returns the type of activity, by searching by title
