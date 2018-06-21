@@ -115,7 +115,7 @@ def stats():
     points = {'cb': cb, 'pc': pc, 'te': te, 'total': total, 'spending':spending}
     # Create a dictionary with the high quality stats
     hq = {'cb': hqcb, 'pc': hqpc, 'te': hqte, 'hq':rockstars, 'percent':hqpercent}
-    # Render page, pass in the dictionaries for processing 
+    # Render page, pass in the dictionaries for processing
     return render_template('admin/stats.html', points=points, hq=hq, activities=activities, activity_count=activity_count)
 
 @bp.route('/admin/users', methods=('GET', 'POST'))
@@ -127,6 +127,8 @@ def users():
         email = request.form['email']
         password = request.form['password']
         permissions = request.form['permissions']
+        # makeURL is defined at the top of this file right now
+        # It takes a username and gives us a nicer slug format for the url 
         url = makeURL(username)
         db = get_db()
         # Add to the database, with a hashed password and values at 0
