@@ -1,6 +1,5 @@
 # SSDP Chapter Activity Tracker
 ## v3.0.0 - Flask Rebuild
-Add note about backups directory and database stuff.
 ```
 ├── admin.py
 ├── auth.py
@@ -64,7 +63,7 @@ This class controls:
 - One-off commands with `command()`
   - `RESET` will reset the stats in the user table
   - `BACKUP` will create a backup of the database. There's notes in the documentation in this class, but for good measure: you need to have a folder called `/backups` in your root directory for this to work. Otherwise it won't. Planning some funcationality to hook into a Google Drive or DropBox or something
-- Editing user information through the `userList()` and `userEdit()` methods 
+- Editing user information through the `userList()` and `userEdit()` methods
 
 
 ###
