@@ -65,5 +65,7 @@ This class controls:
   - `BACKUP` will create a backup of the database. There's notes in the documentation in this class, but for good measure: you need to have a folder called `/backups` in your root directory for this to work. Otherwise it won't. Planning some funcationality to hook into a Google Drive or DropBox or something
 - Editing user information through the `userList()` and `userEdit()` methods
 
+## auth.py
+This class controls logging in and logging out. It's almost a direct duplicate of the Flaskr tutorial login system.
 
-###
+I pretty much didn't change anything from the tutorial [here](http://flask.pocoo.org/docs/1.0/tutorial/) - so not much to say about it. If you want to dig in to how things are working, check out the tutorial and feel free to make changes there. Login systems are beyond my abilities at the moment, so I won't make many changes here. 

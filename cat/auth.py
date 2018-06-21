@@ -1,14 +1,20 @@
-import functools
+# This class controls logging in and logging out. It's almost a direct duplicate of the Flaskr tutorial login system.
+#
+# I pretty much didn't change anything from the tutorial [here](http://flask.pocoo.org/docs/1.0/tutorial/) - so not much to say about it. If you want to dig in to how things are working, check out the tutorial and feel free to make changes there. Login systems are beyond my abilities at the moment, so I won't make many changes here.
+#
 
+# Imports for the system
+import functools
+# Flask microframework imports
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+# Security imports
 from werkzeug.security import check_password_hash, generate_password_hash
-
+# Import get_db function
 from cat.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-
 
 def login_required(view):
     """View decorator that redirects anonymous users to the login page."""
@@ -20,7 +26,6 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
-
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -34,7 +39,6 @@ def load_logged_in_user():
         g.user = get_db().execute(
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
-
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
