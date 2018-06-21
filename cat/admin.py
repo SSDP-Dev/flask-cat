@@ -10,7 +10,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from cat.auth import login_required
 from cat.db import get_db
@@ -270,7 +270,11 @@ def userEdit(url):
     if request.method =='POST':
         username = request.form['username']
         email = request.form['email']
-        password = request.form['password']
+        #Check if password was left blank. If it's blank, just use the same password. If not, hash it and insert.
+        if request.form['password'] != "":
+            password = generate_password_hash(request.form['password'])
+        else:
+            password = user['password']
         permissions = request.form['permissions']
         print(user['username'])
         db.execute(
