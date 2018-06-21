@@ -4,16 +4,21 @@
 <div class = "col">
   <form class = "form-group" method="post">
     <div class ="formgroup">
-    <label for="username"> {{ user['username'] }}</label>
+      <input class="form-control"name="username" id="username" value="{{ user['username'] }}">
   </div>
   <div class = "formgroup">
     <input class="form-control"name="email" id="email" value="{{ user['email'] }}">
   </div>
   <div class = "formgroup">
-    <textarea class="form-control" name="password" id="password" >{{ user['password'] }}</textarea>
+    <input class="form-control"name="password" id="password" value="{{ user['password'] }}">
+  </div>
+  <div class = "formgroup">
+    <input class="form-control" name="permissions" id="permissions" value="{{ user['permissions']}}">
   </div>
   <div class ="formgroup">
     <input class="form-control" type="submit" class = "btn btn-primary" value="Save">
+  </div>
+
   </form>
 </div>
 </div>
