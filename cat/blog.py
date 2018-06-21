@@ -16,7 +16,10 @@ def index():
     ' FROM action'
     ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', actions=actions)
+    chapters = db.execute(
+    'SELECT * from user'
+    ).fetchall()
+    return render_template('blog/index.html', actions=actions, chapters=chapters)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
