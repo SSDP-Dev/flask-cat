@@ -57,5 +57,14 @@ Users with the permissions 'Admin' can see all of the controls. 'Staffer' gets f
 This class controls:
 - Creating unique URLs for user pages with `makeURL()`
 - Generating the stats page with `stats()`
+- Adding users with `users()`
+- Adding point categories with `categories()`
+- Logging points with `activities()`
+- Spending points with `spending()`
+- One-off commands with `command()`
+  - `RESET` will reset the stats in the user table
+  - `BACKUP` will create a backup of the database. There's notes in the documentation in this class, but for good measure: you need to have a folder called `/backups` in your root directory for this to work. Otherwise it won't. Planning some funcationality to hook into a Google Drive or DropBox or something
+- Editing user information through the `userList()` and `userEdit()` methods 
+
 
 ###

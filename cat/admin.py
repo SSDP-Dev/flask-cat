@@ -330,7 +330,7 @@ def userList():
         " FROM user"
         " ORDER BY username ASC"
     ).fetchall()
-    # Pas that chapter list in to the template. 
+    # Pass that chapter list in to the template.
     return render_template('admin/user-list.html', chapter_list=chapter_list)
 
 @bp.route('/admin/user-edit/<url>', methods=('GET', 'POST'))
@@ -341,14 +341,20 @@ def userEdit(url):
         "SELECT username, email, password, permissions"
         " FROM user where url = ?", (url, )
     ).fetchone()
+    # If we POST to the page, update the user
     if request.method =='POST':
         username = request.form['username']
         email = request.form['email']
-        #Check if password was left blank. If it's blank, just use the same password. If not, hash it and insert.
+        # In the template, we don't actually spit out the password
+        # This is ostensibly because of security reasons
+        # But the honest truth is I didn't want to figure out the hashing and rehashing logic at the moment
+        # Check if password was left blank. If it's blank, just use the same password. If not, hash it and insert.
         if request.form['password'] != "":
             password = generate_password_hash(request.form['password'])
         else:
             password = user['password']
+        # This could be a dropdown in the future, but for now I trust myself (mostly) not to make fatal typos
+        # You can tell it's the end of the week as I write this because of what I... just said
         permissions = request.form['permissions']
         print(user['username'])
         db.execute(
@@ -357,6 +363,7 @@ def userEdit(url):
             (username, email, password, permissions, user['username'])
         )
         db.commit()
+        # Redirect to the chapter page we just updated 
         return redirect(url_for('chapters.chapter', url=url))
 
     return render_template('admin/user-edit.html', user=user)
