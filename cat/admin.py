@@ -270,12 +270,19 @@ def spending():
         (item, int(cost), int(chapter_id),)
         )
         db.commit()
-        # Not sure where this should redirect to 
+        # Not sure where this should redirect to
     return render_template('admin/spending.html', chapters=chapters, items=items)
 
 @bp.route('/admin/<cmd>')
+# This is the command buttons link - I followed a tutorial to make this happen
+# It's likely I don't understand 100% of how this is all happening
 def command(cmd=None):
     db = get_db()
+    # If we hit the reset button, we're updating all the user stats to 0
+    # This doesn't update the balance, because we want to roll points over
+    # It also doesn't actually touch the actions in the database
+    # What we'll have to do, eventually, is only display a certain time window of actions
+    # But I actually want to keep all the actions in one database completely, forever
     if cmd == RESET:
        db.execute('UPDATE user SET cb = 0')
        db.execute('UPDATE user SET pc = 0')
@@ -283,8 +290,14 @@ def command(cmd=None):
 
        db.commit()
        response = "Reset point counts"
+       # Right now, this 'else' works because we only have two options. It might need to be elif or something else
     else:
-        #Important to note, you must create a "backup" folder in the root directory
+        # I also followed a tutorial for this, copy/pasted some code from StackOverflow
+        # It works great, though, so I'm not complaining, and neither should you
+        # Important to note, you must create a "backup" folder in the root directory
+        # If there is not backup folder in the root directory, you'll get a bunch of errors
+        # In the future, I want to set a way to route this to say, a dropbox folder or something else
+        # For better storage. But for now we'll do it manually
         backupdir = os.getcwd() + '/backups'
         dbfile = os.getcwd() + '/instance/flaskr.sqlite'
         # Create a timestamped database copy
