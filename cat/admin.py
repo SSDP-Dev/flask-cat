@@ -272,10 +272,13 @@ def userEdit(url):
         email = request.form['email']
         password = request.form['password']
         permissions = request.form['permissions']
+        print(user['username'])
         db.execute(
             'UPDATE user SET username = ?, email = ?, password = ?, permissions = ?'
             ' WHERE username = ?',
-            (username, email, password, permissions, username)
+            (username, email, password, permissions, user['username'])
         )
         db.commit()
+        return redirect(url_for('chapters.chapter', url=url))
+
     return render_template('admin/user-edit.html', user=user)
