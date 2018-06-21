@@ -324,12 +324,13 @@ def command(cmd=None):
 # List all users and edit links
 def userList():
     db = get_db()
+    # Retrieve all the users, get most of their fields, and order by username ascending
     chapter_list = db.execute(
         "SELECT username, cb, pc, te, balance, permissions, url"
         " FROM user"
         " ORDER BY username ASC"
     ).fetchall()
-    print(chapter_list)
+    # Pas that chapter list in to the template. 
     return render_template('admin/user-list.html', chapter_list=chapter_list)
 
 @bp.route('/admin/user-edit/<url>', methods=('GET', 'POST'))
