@@ -1,3 +1,8 @@
+# admin.py is where all the administrative functions and pages live.
+#The index, at /admin, is a landing page for all those pages and functions.
+#It should just be a column of buttons that include links and fuctions for users to control their CAT experience.
+# Users with the permissions 'Admin' can see all of the controls. 'Staffer' gets fewer. 'Chapter' gets the least.
+
 import argparse
 import sqlite3
 import shutil
