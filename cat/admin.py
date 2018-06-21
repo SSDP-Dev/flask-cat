@@ -265,8 +265,7 @@ def userEdit(url):
     db = get_db()
     user = db.execute(
         "SELECT username, email, password, permissions"
-        " FROM user where url = ?"
-        " ORDER BY username ASC", (url, )
+        " FROM user where url = ?", (url, )
     ).fetchone()
     if request.method =='POST':
         username = request.form['username']
