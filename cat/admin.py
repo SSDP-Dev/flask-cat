@@ -264,8 +264,19 @@ def userList():
 def userEdit(url):
     db = get_db()
     user = db.execute(
-        "SELECT username, email, password, permissions, url"
+        "SELECT username, email, password, permissions"
         " FROM user where url = ?"
         " ORDER BY username ASC", (url, )
     ).fetchone()
+    if request.method =='POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        permissions = request.form['permissions']
+        db.execute(
+            'UPDATE user SET username = ?, email = ?, password = ?, permissions = ?'
+            ' WHERE username = ?',
+            (username, email, password, permissions, username)
+        )
+        db.commit()
     return render_template('admin/user-edit.html', user=user)

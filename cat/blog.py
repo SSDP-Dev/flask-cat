@@ -88,7 +88,6 @@ def update(id):
         error = None
         #Calculate the differential between the new point count and the old points
         points_delta = int(points) -  int(old_points)
-        print(points_delta)
         if error is not None:
             flash(error)
         else:
