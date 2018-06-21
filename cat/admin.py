@@ -128,7 +128,7 @@ def users():
         password = request.form['password']
         permissions = request.form['permissions']
         # makeURL is defined at the top of this file right now
-        # It takes a username and gives us a nicer slug format for the url 
+        # It takes a username and gives us a nicer slug format for the url
         url = makeURL(username)
         db = get_db()
         # Add to the database, with a hashed password and values at 0
@@ -138,6 +138,8 @@ def users():
         (username, generate_password_hash(password), email, permissions, url)
         )
         db.commit()
+        # Redirect to the new chapter page 
+        return redirect(url_for('chapters.chapter', url=url))
     return render_template('admin/users.html')
 
 @bp.route('/admin/categories', methods=('GET', 'POST'))
