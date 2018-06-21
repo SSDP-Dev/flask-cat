@@ -138,7 +138,7 @@ def users():
         (username, generate_password_hash(password), email, permissions, url)
         )
         db.commit()
-        # Redirect to the new chapter page 
+        # Redirect to the new chapter page
         return redirect(url_for('chapters.chapter', url=url))
     return render_template('admin/users.html')
 
@@ -158,6 +158,8 @@ def categories():
         (title, description, type)
         )
         db.commit()
+        # Redirect to the available Activities page
+        return redirect(url_for('blog.availableActivities'))
     return render_template('admin/categories.html')
 
 @bp.route('/admin/activities', methods=('GET', 'POST'))
