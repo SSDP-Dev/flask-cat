@@ -54,4 +54,8 @@ This is where all the administrative functions and pages live. The index, at /ad
 
 Users with the permissions 'Admin' can see all of the controls. 'Staffer' gets fewer. 'Chapter' gets the least.
 
+This class controls:
+- Creating unique URLs for user pages with `makeURL()`
+- Generating the stats page with `stats()`
+
 ###
