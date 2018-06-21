@@ -184,7 +184,7 @@ def activities():
         # If we post to the page, add the activity to the action table
         activity = request.form['activity']
         points = request.form['points']
-        # If the user is an Administrator or Staffer, they can use the select chapter form, so we pull from it 
+        # If the user is an Administrator or Staffer, they can use the select chapter form, so we pull from it
         if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer':
             logged_chapter = request.form['chapter']
         # If the user is a chapter, they can only log points for themselves, so we default to their username
@@ -229,37 +229,48 @@ def activities():
     return render_template('admin/activities.html', mb_activities=mb_activities, pc_activities=pc_activities, te_activities=te_activities, chapters=chapters, chapter_list=chapter_list)
 
 @bp.route('/admin/spending', methods=('GET', 'POST'))
+# This page is for chapters, staffers, or admin to spend points
+# It's not functional within our needs yet as of 6/21/18
+# Right now it looks like we're doing an OK job of updating the balance
+# And then inserting into the spending table
+# In the future, this will need to trigger an email to someone in the DC office to process requests
+# It might need to do other things, too, like check if a chapter has enough points
+# Or potentially notify a movement building fellow
 def spending():
     db = get_db()
+    # Retrieve the full chapters list to send as dropdown
     chapters = db.execute(
     'SELECT username FROM user WHERE permissions LIKE "Chapter"'
     )
+    # Retrieve the full list of spending items to represent as dropdown
     items = db.execute(
     'SELECT title FROM spending_list'
     )
+    # If we POST to the page, update the database
     if request.method == 'POST':
         item = request.form['item']
         cost = request.form['cost']
         chapter = request.form['chapter']
         db = get_db()
-
+        # Get the chapter we're creating spending for
+        # May have to do some conditional logic in the chapter variable to account for students creating spending for themselves, like we do in the points logging
         chapter_id = db.execute(
         'SELECT id FROM user WHERE username LIKE ?',
         (chapter,)
         ).fetchone()['id']
-
+        # Update the balance by subtracting the cost from the balance
         db.execute(
         'UPDATE user SET balance = balance - ? Where username = ?',
         (int(cost), chapter,)
         )
-
+        # Add this spending item to the spending table in db
         db.execute(
         'INSERT INTO spending (title, points, author_id)'
         ' Values (?, ?, ?)',
         (item, int(cost), int(chapter_id),)
         )
-
         db.commit()
+        # Not sure where this should redirect to 
     return render_template('admin/spending.html', chapters=chapters, items=items)
 
 @bp.route('/admin/<cmd>')
