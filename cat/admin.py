@@ -1,8 +1,9 @@
-# admin.py is where all the administrative functions and pages live.
+#This is where all the administrative functions and pages live.
 #The index, at /admin, is a landing page for all those pages and functions.
 #It should just be a column of buttons that include links and fuctions for users to control their CAT experience.
 # Users with the permissions 'Admin' can see all of the controls. 'Staffer' gets fewer. 'Chapter' gets the least.
 
+#Import utility things like sql, time, os, json, math, etc.
 import argparse
 import sqlite3
 import shutil
@@ -10,74 +11,111 @@ import time
 import os
 import json
 import math
-
+#Import flask modules needed for the framework.
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
+#Import security functions for password hashes.
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
-
+#Import the login_required function and a way to get the database.
 from cat.auth import login_required
 from cat.db import get_db
-
+#These constants set up two of the 'command' buttons.
+#I wanted to have a few buttons that just did something without a page
+#So I followed a tutorial and these are from that
+#I'm pretty sure all this does is create a const dictionary of terms
+#To dictate what buttons and commands we have.
 BACKUP, RESET = "backup", "reset"
 AVAILABLE_COMMANDS = {
     'Backup': BACKUP,
     'Reset': RESET
 }
 
+#We use makeURL when creating a new chapter
+#This function take the entered username and generates a url in our format
 def makeURL(username):
     url = username.replace(' ', '-').lower()
     return url
 
+#Flask framework requirement, sets up a blueprint. Not sure how this all works
+#Looks like Blueprint is some sort of class and it has the .route() method
 bp = Blueprint('admin', __name__)
 
+#Root page for the admin pages. /admin
 @bp.route('/admin', methods=('GET', 'POST'))
 # Return the index page for the admin panel.
 # This is mostly just a landing page to send us to the real controls.
 def index():
     return render_template('admin/index.html', commands=AVAILABLE_COMMANDS)
 
+# This returns a stats page for staff users.
+# You can't actually get here from the index, it's listed in the header
+# Right now it's public, but we could hide it in the future behind permissions
 @bp.route('/admin/stats', methods=('GET', 'POST'))
 def stats():
     db = get_db()
+    # Sums up how many community building points are in the database.
     cb = db.execute(
     'select sum(action.points)'
     ' FROM action'
     ' INNER JOIN action_list ON action.title=action_list.title'
     ' where action_list.type="Community Building"'
     ).fetchone()[0]
+    # Sums up how many policy change points are in the database.
     pc = db.execute(
     'select sum(action.points)'
     ' FROM action'
     ' INNER JOIN action_list ON action.title=action_list.title'
     ' where action_list.type="Policy Change"'
     ).fetchone()[0]
+    # Sums up how many training and education points are in the database.
     te = db.execute(
     'select sum(action.points)'
     ' FROM action'
     ' INNER JOIN action_list ON action.title=action_list.title'
     ' where action_list.type="Training and Education"'
     ).fetchone()[0]
+    # Sums up total points in the database
     total = db.execute(
     ' select sum(action.points)'
     ' FROM action'
     ' INNER JOIN action_list ON action.title=action_list.title'
     ).fetchone()[0]
+    # Counts how many chapters have over 75 community building points
     hqcb = db.execute('select count(*) from user where cb > 75').fetchone()[0]
+    # Counts how many chapters have over 75 policy change points
     hqpc = db.execute('select count(*) from user where pc > 75').fetchone()[0]
+    # Counts how many chapters have over 50 training and education points
     hqte = db.execute('select count(*) from user where te > 50').fetchone()[0]
+    # A rockstar, or high quality chapter has the following criteria
+    # Either 200+ total points (cb + pc + te)
+    # Or they've filled up 2 out of 3 of the buckets
+    # The rockstars query searches for those criteria in the line below
+    # We can change it if we change the high quality criteria, which happens
     rockstars = db.execute('select count(*) from user where((cb + pc + te) >= 200 ) or (cb >= 75 and pc >= 75) or (cb >= 75 and te >= 50) or (pc >= 75 and te >= 50)').fetchone()[0]
+    # We want to know how many total chapters there are.
+    # We may supplement this with an "active" flag or something to denote DEF
     total_chapters = db.execute('select count(*) from user').fetchone()[0]
+    # Calculates the percentage of high quality chapters total
     hqpercent = math.floor((rockstars / total_chapters ) * 100)
+    # How many points have been spent
     spending = db.execute('select sum(points) from spending').fetchone()[0]
+    # In the page template, we'll be listing out all the available activities
+    # So this query gives us that list
     activities = db.execute('SELECT title FROM action_list')
+    # This gives us the count of how many of each activity have been done
     raw_activity_count = db.execute('select title, count(*) from action group by title')
+    # Initialize an empty dictionary
     activity_count = {}
+    # Create a dictionary with the key/value pair of "Activity" : Count
     for row in raw_activity_count.fetchall():
         activity_count[row[0]] = row[1]
+    # Create a dictionary with the overall points stats
     points = {'cb': cb, 'pc': pc, 'te': te, 'total': total, 'spending':spending}
+    # Create a dictionary with the high quality stats
     hq = {'cb': hqcb, 'pc': hqpc, 'te': hqte, 'hq':rockstars, 'percent':hqpercent}
+    # Render page, pass in the dictionaries for processing 
     return render_template('admin/stats.html', points=points, hq=hq, activities=activities, activity_count=activity_count)
 
 @bp.route('/admin/users', methods=('GET', 'POST'))
