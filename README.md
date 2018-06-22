@@ -1,8 +1,7 @@
 # SSDP Chapter Activity Tracker
 ## v3.0.0 - Flask Rebuild
 
-> A web application to track activity in the Students For Sensible Drug Policy network
-[ssdp.org](https://ssdp.org)
+> A web application to track activity in the [Students For Sensible Drug Policy](https://ssdp.org) network
 
 ## Setup
 We haven't actually pushed this to production yet, so no setup information is avaiable.
