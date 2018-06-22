@@ -167,8 +167,10 @@ Lists the available activities
 Used to create blog posts/actions. Disabled in our app, and should consider re-enabling it or removing it in a refactor.
 
 ### blog/faq.html
-Displays the FAQ page. 
+Displays the FAQ page.
 
+### blog/index.html
+Default home page of the site. Right now displays an activity feed. In the future, it could display more. One TODO here is adding links to the chapter pages and links to the activity descriptions in the feed. 
 
 ## TODO:
 - PEP8 standards
@@ -178,3 +180,4 @@ Displays the FAQ page.
 - Mozilla Observatory changes
 - Automate points to Master List and/or NationBuilder
 - Consistent login reqs across pages
+- Learn D3 and use it to render cool stats and stuff
