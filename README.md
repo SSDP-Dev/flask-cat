@@ -136,9 +136,13 @@ This template is where we log activities.
 ### admin/categories.html
 This page allows us to create new types of actions
 
+### admin/index.html
+Landing page for the control panel for all types of users. 
+
 ## TODO:
 - PEP8 standards
 - WCAG standards
 - Email notifications for staffers, chapters, etc.
 - Twitter integration for activity feed
 - Mozilla Observatory changes
+- Automate points to Master List and/or NationBuilder

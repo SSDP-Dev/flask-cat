@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block title %}Admin{% endblock %} {% block content %}
 <div class="col">
     {% if g.user['permissions'] == 'Admin' %}
+    <!-- Admin only controls -->
         <a href="{{ url_for( 'admin.users') }}"><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Create Users</button> </a>
         <a href="{{ url_for( 'admin.categories') }}"><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Create Categories</button> </a>
         <a href="{{ url_for( 'admin.userList') }}"><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Edit Users</button></a>
@@ -8,12 +9,14 @@
         <button class="btn btn-block btn-primary btn-primary-spacing command command-{{ command }}" value="{{ command }}">{{ label }}</button>
         {% endfor %}
         {% endif %} {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' or g.user['permissions'] == 'Chapter'%}
+        <!-- Controls available to Admin, Staffers, and Chapters -->
         <a href="{{ url_for( 'admin.activities') }}"><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Log Activities</button> </a>
         <a href="{{ url_for( 'admin.spending') }}"><button type="button" class="btn btn-primary btn-primary-spacing btn-block">Spend Points</button> </a>
     {% else %}
     <h2>You must be logged in to view this screen</h2>
     {% endif %}
 </div>
+<!-- This script allows the one-off command buttons to run. I found it on the internet and am not fully sure how it all operates -->
 <script>
     // Only run what comes next *after* the page has loaded
       addEventListener("DOMContentLoaded", function() {
