@@ -7,13 +7,6 @@
 ├── chapters.py
 ├── db.py
 ├── __init__.py
-├── __pycache__
-│   ├── admin.cpython-36.pyc
-│   ├── auth.cpython-36.pyc
-│   ├── blog.cpython-36.pyc
-│   ├── chapters.cpython-36.pyc
-│   ├── db.cpython-36.pyc
-│   └── __init__.cpython-36.pyc
 ├── schema.sql
 ├── static
 │   ├── bootstrap.css
@@ -108,7 +101,7 @@ The biggest thing to note is that I was having trouble getting click to work and
 There are some comments in `init_db()` that go over those overrides and how I used them.
 
 ## init.py
-Another class that came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). My understanding is this class initializes the Flask app and registers blueprints and URL rules. I've only added here what I needed for Blueprints and URLs. 
+Another class that came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). My understanding is this class initializes the Flask app and registers blueprints and URL rules. I've only added here what I needed for Blueprints and URLs.
 
 ## schema.sql
 This is the SQL schema for the SQLite database. It's the first database I've ever designed from the ground up, so could be refined. I'm somewhat hopeful I built it in such a way that it's at least easy to extend.
