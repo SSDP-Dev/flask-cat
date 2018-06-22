@@ -137,7 +137,10 @@ This template is where we log activities.
 This page allows us to create new types of actions
 
 ### admin/index.html
-Landing page for the control panel for all types of users. 
+Landing page for the control panel for all types of users.
+
+### admin/spending.html
+This template allows us to create new spending.
 
 ## TODO:
 - PEP8 standards

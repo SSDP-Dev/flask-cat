@@ -21,9 +21,11 @@
   </div>
 
   {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
+  <!-- Staff and Admin can make spendings for any user. Otherwise it defaults to the user who entered it-->
   <div class="form-group">
   <label for="chapter">Chapter</label>
   <select name="chapter" class="form-control" id="chapter">
+    <!-- We'll want to add the search bar here, as well -->
     {% for chapter in chapters %}
     <option>{{chapter.username}}</option>
     {% endfor %}
