@@ -142,6 +142,9 @@ Landing page for the control panel for all types of users.
 ### admin/spending.html
 This template allows us to create new spending.
 
+### admin/stats.html
+Renders a stats page. Most of the interesting work is done on the Python side for this one, and the HTML just renders the values. 
+
 ## TODO:
 - PEP8 standards
 - WCAG standards
