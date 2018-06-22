@@ -149,7 +149,10 @@ Renders a stats page. Most of the interesting work is done on the Python side fo
 Allows us to edit some values for each user.
 
 ### admin/user-list.html
-Renders a list of users and their user-edit links. In the future this will include a search function. For now, ctrl+f will have to do. 
+Renders a list of users and their user-edit links. In the future this will include a search function. For now, ctrl+f will have to do.
+
+### admin/users.html
+Allows us to add new users. 
 
 ## TODO:
 - PEP8 standards

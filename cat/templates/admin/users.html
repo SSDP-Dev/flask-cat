@@ -6,6 +6,7 @@
 
 {% block content %}
 {% if g.user['permissions'] == 'Admin' %}
+<!-- Right now, only Admin can add new users -->
 <div class="col">
     <h2>Add Users</h2>
   <form method="post">
