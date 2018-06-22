@@ -160,6 +160,9 @@ Login page - provided by Flask tutorial
 ### auth/register.html
 Register page - disabled in our app for now. Will likely need to remove or consider enabling this in the future.
 
+### blog/available-activities.html
+Lists the available activities 
+
 
 ## TODO:
 - PEP8 standards
