@@ -128,7 +128,10 @@ Flask uses the Jinja2 templating language for HTML templates.
 ### base.html
 This template provides the `<head>`, `<header>`, and `<html>` tags, along with the nav bar.
 
-In the future, we might pull out some of those components for better structure. 
+In the future, we might pull out some of those components for better structure.
+
+### admin/activities.html
+This template is where we log activities. 
 
 ## TODO:
 - PEP8 standards

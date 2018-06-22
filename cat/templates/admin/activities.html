@@ -32,6 +32,7 @@
 
             <div class="form-group">
                 {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
+                <!-- Admins and staffers can add activities and assign them to any of the chapters -->
                 <form autocomplete="off" action="/action_page.php">
                     <label for="chapter">Chapter</label>
                     <div class="autocomplete">
@@ -43,6 +44,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </div>
+    <!-- Script for the autofill search bar in the chapter field. Found on the internet, not precisely sure how this works -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function autocomplete(inp, arr) {
