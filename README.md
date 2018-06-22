@@ -173,7 +173,10 @@ Displays the FAQ page.
 Default home page of the site. Right now displays an activity feed. In the future, it could display more. One TODO here is adding links to the chapter pages and links to the activity descriptions in the feed.
 
 ### blog/leaderboard.html
-Displays the leaderboard 
+Displays the leaderboard
+
+### blog/store.html
+Displays the store
 
 ## TODO:
 - PEP8 standards
