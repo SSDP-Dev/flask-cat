@@ -100,6 +100,13 @@ Here's what this class does:
 - Return a chapter from the database with `get_chapter()`
 - Displays a chapter page with `chapter()`
 
+## db.py
+This class was also provided by the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). In the same fashion, I really didn't make any changes here.
+
+The biggest thing to note is that I was having trouble getting click to work and couldn't make new CLI commands. That was a hassle during development, so I just overrode the one CLI command that did work.
+
+There are some comments in `init_db()` that go over those overrides and how I used them. 
+
 ## TODO:
 - PEP8 standards
 - WCAG standards

@@ -1,3 +1,7 @@
+# This class was also provided by the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/).
+# In the same fashion, I really didn't make any changes here.
+# Exception: init_db()
+
 import sqlite3
 
 import click
