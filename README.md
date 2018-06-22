@@ -176,7 +176,16 @@ Default home page of the site. Right now displays an activity feed. In the futur
 Displays the leaderboard
 
 ### blog/store.html
-Displays the store
+Displays the store. As stated in the control documentation for this - we have duplicative code here and could probably stand to remove either this or the control panel option.
+
+### blog/update.html
+Allows us to update action information.
+
+### chapters/chapter.html
+Single chapter page, displays stats and an activity feed for that chapter.
+
+### chapters/index.html
+Displays a list of all the chapters and includes links to their chapter pages. 
 
 ## TODO:
 - PEP8 standards
