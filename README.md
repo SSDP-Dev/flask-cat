@@ -68,4 +68,25 @@ This class controls:
 ## auth.py
 This class controls logging in and logging out. It's almost a direct duplicate of the Flaskr tutorial login system.
 
-I pretty much didn't change anything from the tutorial [here](http://flask.pocoo.org/docs/1.0/tutorial/) - so not much to say about it. If you want to dig in to how things are working, check out the tutorial and feel free to make changes there. Login systems are beyond my abilities at the moment, so I won't make many changes here. 
+I pretty much didn't change anything from the tutorial [here](http://flask.pocoo.org/docs/1.0/tutorial/) - so not much to say about it. If you want to dig in to how things are working, check out the tutorial and feel free to make changes there. Login systems are beyond my abilities at the moment, so I won't make many changes here.
+
+## blog.py
+This class came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) as well.
+
+The tutorial gave me a few things like creating 'blog posts' and editing them, so I kept the bulk of that to use with actions.
+
+I never changed it from `blog` because I didn't want to create any weird bugs. Maybe later on down the road we'll clean it up in refactoring. For now, here's what we do:
+
+- Control the homepage for the entire site with `index()`
+- Control the creation of action with `create()`
+  - This is **not** how we're creating actions. We could, but we're doing it better in admin.activities(). Leaving this in for now, but will come back and remove it during refactoring and cleanup
+- Retrieve actions through `get_action()`
+- Update actions with `update()`
+- Delete actions with `delete()`
+- Render a leaderboard with `leaderboard()`
+- Render the available activities page through `availableActivities()`
+- Render the FAQ with `faq()`
+- Render the store with `store()`
+  - This may need to get merged or changed with the spending function in the admin class
+
+Lots of these methods are good boilerplates for manipulating the database in other ways, so I've kept a lot of it pretty close to the tutorial.
