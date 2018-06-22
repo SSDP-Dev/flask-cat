@@ -152,7 +152,14 @@ Allows us to edit some values for each user.
 Renders a list of users and their user-edit links. In the future this will include a search function. For now, ctrl+f will have to do.
 
 ### admin/users.html
-Allows us to add new users. 
+Allows us to add new users.
+
+### auth/login.html
+Login page - provided by Flask tutorial
+
+### auth/register.html
+Register page - disabled in our app for now. Will likely need to remove or consider enabling this in the future.
+
 
 ## TODO:
 - PEP8 standards
