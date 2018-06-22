@@ -170,7 +170,10 @@ Used to create blog posts/actions. Disabled in our app, and should consider re-e
 Displays the FAQ page.
 
 ### blog/index.html
-Default home page of the site. Right now displays an activity feed. In the future, it could display more. One TODO here is adding links to the chapter pages and links to the activity descriptions in the feed. 
+Default home page of the site. Right now displays an activity feed. In the future, it could display more. One TODO here is adding links to the chapter pages and links to the activity descriptions in the feed.
+
+### blog/leaderboard.html
+Displays the leaderboard 
 
 ## TODO:
 - PEP8 standards
