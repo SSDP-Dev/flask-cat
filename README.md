@@ -40,8 +40,9 @@
         ├── chapter.html
         └── index.html
 ```
+## Python Classes
 
-## admin.py
+### admin.py
 This is where all the administrative functions and pages live. The index, at /admin, is a landing page for all those pages and functions. It should just be a column of buttons that include links and fuctions for users to control their CAT experience.
 
 Users with the permissions 'Admin' can see all of the controls. 'Staffer' gets fewer. 'Chapter' gets the least.
@@ -58,12 +59,12 @@ This class controls:
   - `BACKUP` will create a backup of the database. There's notes in the documentation in this class, but for good measure: you need to have a folder called `/backups` in your root directory for this to work. Otherwise it won't. Planning some funcationality to hook into a Google Drive or DropBox or something
 - Editing user information through the `userList()` and `userEdit()` methods
 
-## auth.py
+### auth.py
 This class controls logging in and logging out. It's almost a direct duplicate of the Flaskr tutorial login system.
 
 I pretty much didn't change anything from the tutorial [here](http://flask.pocoo.org/docs/1.0/tutorial/) - so not much to say about it. If you want to dig in to how things are working, check out the tutorial and feel free to make changes there. Login systems are beyond my abilities at the moment, so I won't make many changes here.
 
-## blog.py
+### blog.py
 This class came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) as well.
 
 The tutorial gave me a few things like creating 'blog posts' and editing them, so I kept the bulk of that to use with actions.
@@ -84,7 +85,7 @@ I never changed it from `blog` because I didn't want to create any weird bugs. M
 
 Lots of these methods are good boilerplates for manipulating the database in other ways, so I've kept a lot of it pretty close to the tutorial.
 
-## chapters.py
+### chapters.py
 This class provides methods to work with chapter data. It's a bit more front facing.
 
 Here's what this class does:
@@ -93,18 +94,25 @@ Here's what this class does:
 - Return a chapter from the database with `get_chapter()`
 - Displays a chapter page with `chapter()`
 
-## db.py
+### db.py
 This class was also provided by the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). In the same fashion, I really didn't make any changes here.
 
 The biggest thing to note is that I was having trouble getting click to work and couldn't make new CLI commands. That was a hassle during development, so I just overrode the one CLI command that did work.
 
 There are some comments in `init_db()` that go over those overrides and how I used them.
 
-## init.py
+### init.py
 Another class that came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). My understanding is this class initializes the Flask app and registers blueprints and URL rules. I've only added here what I needed for Blueprints and URLs.
 
-## schema.sql
+## SQL files
+### schema.sql
 This is the SQL schema for the SQLite database. It's the first database I've ever designed from the ground up, so could be refined. I'm somewhat hopeful I built it in such a way that it's at least easy to extend.
+
+## Static assets
+We've got the bootstrap CSS and JS, along with a custom CSS file here and other assets. Pretty straightforward. Any other required assets should live in this directory.
+
+## Templates
+Flask uses the Jinja2 templating language for HTML templates.
 
 ## TODO:
 - PEP8 standards
