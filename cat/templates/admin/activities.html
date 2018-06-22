@@ -29,9 +29,13 @@
             <input name="points" class="form-control" id="points" placeholder="Points">
         </div>
         <div class="form-group">
+            <label for="note">Note</label>
+            <input name="note" class="form-control" id="note" placeholder="Note">
+        </div>
+          <div class="form-group">
+          {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
 
             <div class="form-group">
-                {% if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer' %}
                 <!-- Admins and staffers can add activities and assign them to any of the chapters -->
                 <form autocomplete="off" action="/action_page.php">
                     <label for="chapter">Chapter</label>

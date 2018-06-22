@@ -124,11 +124,14 @@ def update(id):
             flash(error)
         else:
             db = get_db()
+            # Update the action
             db.execute(
                 'UPDATE action SET points = ?, note = ?'
                 ' WHERE id = ?',
                 (points, note, id)
             )
+            # Set the balance to the delta of the new value
+            db.execute('UPDATE user SET balance = balance + ? WHERE username = ?', (points_delta, author,))
             db.commit()
             #If type = policy change, update that field for the user
             if type == "Policy Change":
@@ -160,10 +163,39 @@ def update(id):
 @login_required
 def delete(id):
     # Get the action with the id supplied
-    get_action(id)
+    target_action = get_action(id)
     db = get_db()
+    # Find the author of this specific activity
+    author = db.execute('SELECT author_id from action WHERE id = ?', (id,)).fetchone()['author_id']
+    # Get the point value of the action, to be subtracted later
+    action_value = db.execute('SELECT points from action where id = ?', (id,)).fetchone()['points']
+    # Get the type of the action so we can subtract points from the correct place
+    type = db.execute('SELECT * from action_list WHERE title = ?', (target_action['title'], )).fetchone()['type']
     # Delete it
     db.execute('DELETE FROM action WHERE id = ?', (id,))
+    # Change the balance for the author
+    db.execute('UPDATE user SET balance = balance - ? where username = ?', (action_value, author,))
+    #If type = policy change, update that field for the user
+    if type == "Policy Change":
+        #Update the policy change poins with differential.
+        db.execute(
+            'UPDATE user SET pc = pc - ? WHERE username = ?', (action_value, author,)
+        )
+        db.commit()
+    #If type = community building, update that field for the user
+    elif type == "Community Building":
+        #Update the community building points with differential
+        db.execute(
+            'UPDATE user SET cb = cb - ? WHERE username = ?', (action_value, author,)
+        )
+        db.commit()
+    #If type = training and education, update that field for the user
+    elif type == "Training and Education":
+        #Update the T&E points with differential
+        db.execute(
+            'UPDATE user SET te = te - ? WHERE username = ?', (action_value, author,)
+        )
+        db.commit()
     db.commit()
     # Return to home page
     return redirect(url_for('blog.index'))

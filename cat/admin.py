@@ -184,6 +184,7 @@ def activities():
         # If we post to the page, add the activity to the action table
         activity = request.form['activity']
         points = request.form['points']
+        note = request.form['note']
         # If the user is an Administrator or Staffer, they can use the select chapter form, so we pull from it
         if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer':
             logged_chapter = request.form['chapter']
@@ -195,9 +196,9 @@ def activities():
         'SELECT type FROM action_list WHERE title LIKE ?', (activity,)
         ).fetchone()[0]
         db.execute(
-        'INSERT INTO action (title, points, author_id)'
-        ' Values (?, ?, ?)',
-        (activity, points, logged_chapter)
+        'INSERT INTO action (title, points, note, author_id)'
+        ' Values (?, ?, ?, ?)',
+        (activity, points, note, logged_chapter)
         )
         # We also add to the balance of the logged chapter
         db.execute(
@@ -363,7 +364,7 @@ def userEdit(url):
             (username, email, password, permissions, user['username'])
         )
         db.commit()
-        # Redirect to the chapter page we just updated 
+        # Redirect to the chapter page we just updated
         return redirect(url_for('chapters.chapter', url=url))
 
     return render_template('admin/user-edit.html', user=user)
