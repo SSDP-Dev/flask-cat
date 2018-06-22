@@ -2,7 +2,7 @@
 ## v3.0.0 - Flask Rebuild
 
 > A web application to track activity in the Students For Sensible Drug Policy network
-> [ssdp.org](https://ssdp.org)
+[ssdp.org](https://ssdp.org)
 
 ## Setup
 We haven't actually pushed this to production yet, so no setup information is avaiable.
@@ -185,7 +185,7 @@ Allows us to update action information.
 Single chapter page, displays stats and an activity feed for that chapter.
 
 ### chapters/index.html
-Displays a list of all the chapters and includes links to their chapter pages. 
+Displays a list of all the chapters and includes links to their chapter pages.
 
 ## TODO:
 - PEP8 standards
