@@ -1,9 +1,12 @@
 <!doctype html>
 <html>
+<!-- Pull whatever the title of the page is, supplied with the block title tags in each page -->
 <title>{% block title %}{% endblock %} - SSDP</title>
+<!-- Get bootstrap css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+<!-- Get cusom css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
-
+<!-- Bootstrap navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
     <section class="container">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='SSDP20-logo-transparent.png') }}" width=75></img></a>
@@ -19,17 +22,23 @@
                 <a class="nav-item nav-link" href="{{url_for('blog.store')}}">Store</a>
                 <a class="nav-item nav-link" href="{{url_for('admin.stats')}}">Stats</a>
                 {% if g.user %}
+                <!-- These items only appear if people are logged in -->
                 <a class="nav-item nav-link" href="{{url_for('admin.index')}}">Control Panel</a>
-                <a class="nav-item nav-link" href="{{ url_for('auth.logout')}}">Log Out</a> {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('auth.login')}}">Log In</a> {% endif %}
+                <a class="nav-item nav-link" href="{{ url_for('auth.logout')}}">Log Out</a>
+                {% else %}
+                <!-- If the user isn't logged in, display a link to do so -->
+                <a class="nav-item nav-link" href="{{ url_for('auth.login')}}">Log In</a>
+                {% endif %}
             </div>
     </section>
     </div>
 </nav>
 <section class="container">
     <header>
+      <!-- Provide a header -->
         {% block header %}{% endblock %}
     </header>
+    <!-- Flash errors. We don't really use this in the CAT because I didn't learn how, but it was in the Flask tutorial -->
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
@@ -39,6 +48,7 @@
   </div>
 </section>
 </html>
+<!-- Bootstrap JS reqs -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>

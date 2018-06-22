@@ -125,6 +125,13 @@ We've got the bootstrap CSS and JS, along with a custom CSS file here and other 
 ## Templates
 Flask uses the Jinja2 templating language for HTML templates.
 
+### base.html
+This template provides the `<head>`, `<header>`, and `<html>` tags, along with the nav bar.
+
+In the future, we might pull out some of those components for better structure. 
+
 ## TODO:
 - PEP8 standards
 - WCAG standards
+- Email notifications for staffers, chapters, etc.
+- Twitter integration for activity feed
