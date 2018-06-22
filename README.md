@@ -1,5 +1,16 @@
 # SSDP Chapter Activity Tracker
 ## v3.0.0 - Flask Rebuild
+
+> A web application to track activity in the Students For Sensible Drug Policy network
+> [ssdp.org](https://ssdp.org)
+
+## Setup
+We haven't actually pushed this to production yet, so no setup information is avaiable.
+
+## Development
+You'll want to set up a Flask development environment to work on this. You can learn more about the steps to do so in the [Flask Documentation](http://flask.pocoo.org/docs/1.0/installation/#installation).
+
+The Flask CAT was built with Flask v1.0 and Python 3.
 ```
 ├── admin.py
 ├── auth.py
