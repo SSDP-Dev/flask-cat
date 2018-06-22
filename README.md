@@ -90,3 +90,16 @@ I never changed it from `blog` because I didn't want to create any weird bugs. M
   - This may need to get merged or changed with the spending function in the admin class
 
 Lots of these methods are good boilerplates for manipulating the database in other ways, so I've kept a lot of it pretty close to the tutorial.
+
+## chapters.py
+This class provides methods to work with chapter data. It's a bit more front facing.
+
+Here's what this class does:
+
+- Displays all of the chapters in a page with `index()`
+- Return a chapter from the database with `get_chapter()`
+- Displays a chapter page with `chapter()`
+
+## TODO:
+- PEP8 standards
+- WCAG standards
