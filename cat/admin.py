@@ -251,7 +251,11 @@ def spending():
     if request.method == 'POST':
         item = request.form['item']
         cost = request.form['cost']
-        chapter = request.form['chapter']
+        if g.user['permissions'] == 'Admin' or g.user['permissions'] == 'Staffer':
+            chapter = request.form['chapter']
+        # If the user is a chapter, they can only log points for themselves, so we default to their username
+        else:
+            chapter = g.user['username']
         db = get_db()
         # Get the chapter we're creating spending for
         # May have to do some conditional logic in the chapter variable to account for students creating spending for themselves, like we do in the points logging
