@@ -164,7 +164,10 @@ Register page - disabled in our app for now. Will likely need to remove or consi
 Lists the available activities
 
 ### blog/create.html
-Used to create blog posts/actions. Disabled in our app, and should consider re-enabling it or removing it in a refactor. 
+Used to create blog posts/actions. Disabled in our app, and should consider re-enabling it or removing it in a refactor.
+
+### blog/faq.html
+Displays the FAQ page. 
 
 
 ## TODO:
