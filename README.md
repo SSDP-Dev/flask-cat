@@ -148,6 +148,9 @@ Renders a stats page. Most of the interesting work is done on the Python side fo
 ### admin/user-edit.html
 Allows us to edit some values for each user.
 
+### admin/user-list.html
+Renders a list of users and their user-edit links. In the future this will include a search function. For now, ctrl+f will have to do. 
+
 ## TODO:
 - PEP8 standards
 - WCAG standards
@@ -155,4 +158,4 @@ Allows us to edit some values for each user.
 - Twitter integration for activity feed
 - Mozilla Observatory changes
 - Automate points to Master List and/or NationBuilder
-- Consistent login reqs across pages 
+- Consistent login reqs across pages
