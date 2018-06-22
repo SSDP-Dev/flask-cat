@@ -131,10 +131,14 @@ This template provides the `<head>`, `<header>`, and `<html>` tags, along with t
 In the future, we might pull out some of those components for better structure.
 
 ### admin/activities.html
-This template is where we log activities. 
+This template is where we log activities.
+
+### admin/categories.html
+This page allows us to create new types of actions
 
 ## TODO:
 - PEP8 standards
 - WCAG standards
 - Email notifications for staffers, chapters, etc.
 - Twitter integration for activity feed
+- Mozilla Observatory changes
