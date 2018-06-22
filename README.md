@@ -143,7 +143,10 @@ Landing page for the control panel for all types of users.
 This template allows us to create new spending.
 
 ### admin/stats.html
-Renders a stats page. Most of the interesting work is done on the Python side for this one, and the HTML just renders the values. 
+Renders a stats page. Most of the interesting work is done on the Python side for this one, and the HTML just renders the values.
+
+### admin/user-edit.html
+Allows us to edit some values for each user.
 
 ## TODO:
 - PEP8 standards
@@ -152,3 +155,4 @@ Renders a stats page. Most of the interesting work is done on the Python side fo
 - Twitter integration for activity feed
 - Mozilla Observatory changes
 - Automate points to Master List and/or NationBuilder
+- Consistent login reqs across pages 

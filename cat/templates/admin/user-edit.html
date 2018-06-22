@@ -10,6 +10,7 @@
     <input class="form-control"name="email" id="email" value="{{ user['email'] }}">
   </div>
   <div class = "formgroup">
+    <!-- For security and ability reasons, we don't render the plain text password here. If we leave it blank, the password will stay the same. Any other value entered here will get hashed and entered. So don't accidentally put a space in there while tabbing through -->
     <input class="form-control"name="password" id="password" value="">
   </div>
   <div class = "formgroup">
