@@ -105,7 +105,13 @@ This class was also provided by the [Flaskr tutorial](http://flask.pocoo.org/doc
 
 The biggest thing to note is that I was having trouble getting click to work and couldn't make new CLI commands. That was a hassle during development, so I just overrode the one CLI command that did work.
 
-There are some comments in `init_db()` that go over those overrides and how I used them. 
+There are some comments in `init_db()` that go over those overrides and how I used them.
+
+## init.py
+Another class that came from the [Flaskr tutorial](http://flask.pocoo.org/docs/1.0/tutorial/). My understanding is this class initializes the Flask app and registers blueprints and URL rules. I've only added here what I needed for Blueprints and URLs. 
+
+## schema.sql
+This is the SQL schema for the SQLite database. It's the first database I've ever designed from the ground up, so could be refined. I'm somewhat hopeful I built it in such a way that it's at least easy to extend.
 
 ## TODO:
 - PEP8 standards
