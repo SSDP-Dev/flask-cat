@@ -35,7 +35,7 @@ The main project `__init__.py` file has to be different between the development 
 
 To work in the development server, switch over to the 'dev' branch (which we should be using, anyway, I know. But sometimes expediency trumps proper git procedure).
 
-The dev branch will contain the proper `__init__.py` for the dev server.
+The dev branch will contain the proper `__init__.py` for the dev server, but since I use live data in the backups and instance, you'll need to create a database for yourself, and the backups folder as well.
 
 ```
 ├── admin.py
