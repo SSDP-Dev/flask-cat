@@ -13,8 +13,8 @@ These instructions apply to our setup on Dreamhost and may vary depending on you
 4. Get SSH access to your new server
 5. Clone the repo into the directory with your virtualenv, from step 3.
 
-  `git clone https://github.com/SSDP-Dev/flask-cat.git cat`
-  
+  >`git clone https://github.com/SSDP-Dev/flask-cat.git cat`
+
 6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into the directory above `public/` - same place as where you set up the `cat/` folder. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
 7. In that same directory, do the following
   > `mkdir tmp`
