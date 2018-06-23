@@ -33,7 +33,7 @@ You'll want to set up a Flask development environment to work on this. You can l
 
 The main project `__init__.py` file has to be different between the development server and the Dreamhost server. Or rather, it doesn't have to be, but I haven't figured out how to make it work in both use cases.
 
-To work in the development server, switch over to the development branch (which we should be using, anyway, I know. But sometimes expediency trumps proper git procedure).
+To work in the development server, switch over to the 'dev' branch (which we should be using, anyway, I know. But sometimes expediency trumps proper git procedure).
 
 The development branch will contain the proper `__init__.py` for the dev server.
 
