@@ -12,15 +12,23 @@ These instructions apply to our setup on Dreamhost and may vary depending on you
 3. [Set up a new virtualenv in the directory above `public/` I set mine up as `cat/`.](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3)
 4. Get SSH access to your new server
 5. Clone the repo into the directory with your virtualenv, from step 3.
-  - `git clone https://github.com/SSDP-Dev/flask-cat.git cat`
+`git clone https://github.com/SSDP-Dev/flask-cat.git cat`
 6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into the directory above `public/` - same place as where you set up the `cat/` folder. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
 7. In that same directory, do the following
   > `mkdir tmp`
   > `touch tmp/restart.txt`
   - Every time you make changes to your Passenger config, touch the `tmp/restart.txt` file to restart Passenger.
 
+That should do the trick.
+
 ## Development
 You'll want to set up a Flask development environment to work on this. You can learn more about the steps to do so in the [Flask Documentation](http://flask.pocoo.org/docs/1.0/installation/#installation).
+
+The main project __init__.py file has to be different between the development server and the Dreamhost server. Or rather, it doesn't have to be, but I haven't figured out how to make it work in both use cases.
+
+To work in the development server, switch over to the development branch (which we should be using, anyway, I know. But sometimes expediency trumps proper git procedure).
+
+The development branch will contain the proper __init__.py for the dev server.
 
 ```
 ├── admin.py
