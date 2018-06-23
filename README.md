@@ -8,20 +8,21 @@
 These instructions apply to our setup on Dreamhost and may vary depending on your web hosting services.
 
 1. Set up and fully host a new domain with Dreamhost. Make sure the server can run Python apps. For DH, just check off the "Passenger" setting.
-2. [Install a custom version of Python 3.](https://help.dreamhost.com/hc/en-us/articles/115000702772-Installing-a-custom-version-of-Python-3)
-3. [Set up a new virtualenv](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3) in the directory that looks like something.domain.com. I set mine up as `cat.ssdp.org/cat`.
-4. Install [Flask](http://flask.pocoo.org/) with `pip3 install Flask`
-5. Clone the repo into the directory with your virtualenv, from step 3.
+2. Clone the repository into the directory that looks like something.domain.com. I set mine up as `cat.ssdp.org/cat`.
 
   >`git clone https://github.com/SSDP-Dev/flask-cat.git cat`
 
-6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into the directory above `public/` - same place as where you set up the `cat/` folder. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
+3. [Install a custom version of Python 3.](https://help.dreamhost.com/hc/en-us/articles/115000702772-Installing-a-custom-version-of-Python-3)
+4. [Set up a new virtualenv](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3) in a separate directory inside something.domain.com/cat. I set mine up as `cat.ssdp.org/cat/venv`.
+5. With your virtualenv activated (refer to step 4 for help), install [Flask](http://flask.pocoo.org/) with `pip3 install Flask`
+6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into `something.domain.com/`. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
 7. In that same directory, do the following
   > `mkdir tmp`
 
   > `touch tmp/restart.txt`
 
   - Every time you make changes to your Passenger config, touch `tmp/restart.txt`
+  
 That should do the trick.
 
 ## Development
