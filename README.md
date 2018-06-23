@@ -2,14 +2,26 @@
 ## v3.0.0 - Flask Rebuild
 
 > A web application to track activity in the [Students For Sensible Drug Policy](https://ssdp.org) network
+> The Flask CAT was built with Flask v1.0 and Python 3.
 
 ## Setup
-We haven't actually pushed this to production yet, so no setup information is avaiable.
+These instructions apply to our setup on Dreamhost and may vary depending on your web hosting services.
+
+1. Set up and fully host a new domain with Dreamhost. Make sure the server can run Python apps. For DH, just check off the "Passenger" setting.
+2. [Install a custom version of Python 3.](https://help.dreamhost.com/hc/en-us/articles/115000702772-Installing-a-custom-version-of-Python-3)
+3. [Set up a new virtualenv in the directory above `public/` I set mine up as `cat/`.](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3)
+4. Get SSH access to your new server
+5. Clone the repo into the directory with your virtualenv, from step 3.
+  - `git clone https://github.com/SSDP-Dev/flask-cat.git cat`
+6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into the directory above `public/` - same place as where you set up the `cat/` folder. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
+7. In that same directory, do the following
+  > `mkdir tmp`
+  > `touch tmp/restart.txt`
+  - Every time you make changes to your Passenger config, touch the `tmp/restart.txt` file to restart Passenger.
 
 ## Development
 You'll want to set up a Flask development environment to work on this. You can learn more about the steps to do so in the [Flask Documentation](http://flask.pocoo.org/docs/1.0/installation/#installation).
 
-The Flask CAT was built with Flask v1.0 and Python 3.
 ```
 ├── admin.py
 ├── auth.py
