@@ -25,6 +25,9 @@ These instructions apply to our setup on Dreamhost and may vary depending on you
 
 That should do the trick.
 
+**Important Notes**
+This repo ships with a standard database. It includes only one entry: a user with username 'admin' and password 'admin'. For privacy reasons, we don't list anything else in there. You'll have to fill in the rest, but you'll definitely want to change your password. 
+
 ## Development
 You'll want to set up a Flask development environment to work on this. You can learn more about the steps to do so in the [Flask Documentation](http://flask.pocoo.org/docs/1.0/installation/#installation).
 
