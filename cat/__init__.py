@@ -10,12 +10,8 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+    app.config.from_pyfile('config.py', silent=True)
+
 
     # ensure the instance folder exists
     try:
@@ -47,3 +43,5 @@ def create_app(test_config=None):
     app.add_url_rule('/admin', endpoint='index')
 
     return app
+
+app = create_app()
