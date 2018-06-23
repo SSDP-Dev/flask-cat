@@ -2,6 +2,8 @@
 <html>
 <!-- Pull whatever the title of the page is, supplied with the block title tags in each page -->
 <title>{% block title %}{% endblock %} - SSDP</title>
+<!-- Make it responsive -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Get bootstrap css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 <!-- Get cusom css -->
