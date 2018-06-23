@@ -10,7 +10,7 @@ These instructions apply to our setup on Dreamhost and may vary depending on you
 1. Set up and fully host a new domain with Dreamhost. Make sure the server can run Python apps. For DH, just check off the "Passenger" setting.
 2. [Install a custom version of Python 3.](https://help.dreamhost.com/hc/en-us/articles/115000702772-Installing-a-custom-version-of-Python-3)
 3. [Set up a new virtualenv in the directory above `public/` I set mine up as `cat/`.](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3)
-4. Install flask with `pip3 install Flask`
+4. Install [Flask](http://flask.pocoo.org/) with `pip3 install Flask`
 5. Clone the repo into the directory with your virtualenv, from step 3.
 
   >`git clone https://github.com/SSDP-Dev/flask-cat.git cat`
