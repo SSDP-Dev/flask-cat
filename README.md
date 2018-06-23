@@ -15,14 +15,14 @@ These instructions apply to our setup on Dreamhost and may vary depending on you
 3. [Install a custom version of Python 3.](https://help.dreamhost.com/hc/en-us/articles/115000702772-Installing-a-custom-version-of-Python-3)
 4. [Set up a new virtualenv](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3) in a separate directory inside something.domain.com/cat. I set mine up as `cat.ssdp.org/cat/venv`.
 5. With your virtualenv activated (refer to step 4 for help), install [Flask](http://flask.pocoo.org/) with `pip3 install Flask`
-6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into `something.domain.com/`. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use) and the systempath (make sure you append it with the app name).
+6. You'll want to create a `passenger_wsgi.py` file. There's an example in the root of this repo, which you should be able to move into `something.domain.com/`. You may need to change some of the settings in there, like the INTERP variable (set it to the python3 interpreter you want to use - most likely `cat/venv/bin/python3`) and the systempath (make sure you append it with the app name, most likely `cat`).
 7. In that same directory, do the following
   > `mkdir tmp`
 
   > `touch tmp/restart.txt`
 
   - Every time you make changes to your Passenger config, touch `tmp/restart.txt`
-  
+
 That should do the trick.
 
 ## Development
