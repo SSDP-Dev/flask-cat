@@ -31,12 +31,6 @@ This repo ships with a standard database. It includes only one entry: a user wit
 ## Development
 You'll want to set up a Flask development environment to work on this. You can learn more about the steps to do so in the [Flask Documentation](http://flask.pocoo.org/docs/1.0/installation/#installation).
 
-The main project `__init__.py` file has to be different between the development server and the Dreamhost server. Or rather, it doesn't have to be, but I haven't figured out how to make it work in both use cases.
-
-To work in the development server, switch over to the development branch (which we should be using, anyway, I know. But sometimes expediency trumps proper git procedure).
-
-The development branch will contain the proper `__init__.py` for the dev server.
-
 ```
 ├── admin.py
 ├── auth.py
