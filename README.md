@@ -216,3 +216,5 @@ Displays a list of all the chapters and includes links to their chapter pages.
 - Automate points to Master List and/or NationBuilder
 - Consistent login reqs across pages
 - Learn D3 and use it to render cool stats and stuff
+- Added Flask-SSLify requirement. May need to add that in setup instructions
+- Clean up the database that we ship with, figure out good way to distribute venv, etc.
