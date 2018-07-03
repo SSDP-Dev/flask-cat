@@ -237,5 +237,7 @@ def store():
 # This function gives us a page which lists who has completed a certain activity
 @bp.route('/activity/<int:id>')
 def activity(id):
-    activity = {"name" : "something"}
+    # activity = {"name" : "something"}
+    db = get_db()
+    activity = db.execute('SELECT title FROM action_list WHERE id = ?', (id,)).fetchone()
     return render_template('blog/activity.html', activity=activity)
