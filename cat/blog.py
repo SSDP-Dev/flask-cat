@@ -219,7 +219,7 @@ def availableActivities():
     db = get_db()
     # Retrive the activities list
     activities = db.execute(
-    'SELECT title, description, type'
+    'SELECT title, description, type, point_value, spanish_translation'
     ' FROM action_list'
     ).fetchall()
     return render_template('blog/available-activities.html', activities=activities)

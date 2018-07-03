@@ -19,6 +19,8 @@ CREATE TABLE action_list (
   title TEXT NOT NULL,
   description TEXT,
   type TEXT NOT NULL,
+  point_value INTEGER,
+  spanish_translation TEXT,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

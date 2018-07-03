@@ -10,6 +10,7 @@
               <tr>
                   <th scope = "col">Activity</th>
                   <th scope = "col">Description</th>
+                  <th scope = "col">Points</th>
               </tr>
           </thead>
           <tbody>
@@ -21,6 +22,9 @@
                   </td>
                   <td valign = "top">
                     {{activity.description | safe}}
+                  </td>
+                  <td valign="top">
+                    {{activity.point_value}}
                   </td>
               </tr>
               {% endif %}
@@ -73,6 +77,9 @@
               {% endfor %}
           </tbody>
       </table>
+      <!-- Spanish Translations -->
+
+
     </div>
 </div>
 {% endblock %}
