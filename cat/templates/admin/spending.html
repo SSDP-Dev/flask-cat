@@ -9,7 +9,7 @@
   <form method="post">
   <div class="form-group">
     <label for="item">Item</label>
-    <select name="item" class="form-control" id="item">
+    <select name="item" class="form-control" id="item" required>
       {% for item in items %}
       <option>{{item.title}}</option>
       {% endfor %}
