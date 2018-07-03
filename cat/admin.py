@@ -103,7 +103,7 @@ def stats():
     spending = db.execute('select sum(points) from spending').fetchone()[0]
     # In the page template, we'll be listing out all the available activities
     # So this query gives us that list
-    activities = db.execute('SELECT title FROM action_list')
+    activities = db.execute('SELECT title, id FROM action_list')
     # This gives us the count of how many of each activity have been done
     raw_activity_count = db.execute('select title, count(*) from action group by title')
     # Initialize an empty dictionary

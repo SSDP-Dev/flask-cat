@@ -48,7 +48,7 @@
 <table class = "table">
 {% for activity in activities %}
 <tr>
-<td>{{activity.title}}</td>
+<td><a href="{{url_for('blog.activity', id=activity['id']) }}">{{activity.title}}</a></td>
 <td>{{activity_count[activity.title]}}</td>
 </tr>
 {% endfor %}
