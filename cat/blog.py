@@ -241,5 +241,5 @@ def activity(id):
     # Get the title of the activity, searching by id
     activity = db.execute('SELECT title FROM action_list WHERE id = ?', (id,)).fetchone()
     # Get the chapter names from each action where the title matches the given activity
-    chapters = db.execute('SELECT author_id FROM action WHERE title = ?', (activity['title'],)).fetchall()
+    chapters = db.execute('SELECT author_id, created FROM action WHERE title = ?', (activity['title'],)).fetchall()
     return render_template('blog/activity.html', activity=activity, chapters=chapters)
