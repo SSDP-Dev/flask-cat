@@ -247,6 +247,13 @@ def spending():
     items = db.execute(
     'SELECT title FROM spending_list'
     )
+    # Retrieve the list of chapters from the database
+    chapters = db.execute('SELECT username FROM user WHERE permissions LIKE "Chapter"')
+    # Init an empty list for the chapter listing
+    chapter_list = []
+    # Push the usernames into the chapter list for ease of use in search bar on page
+    for x in chapters.fetchall():
+        chapter_list.append((str(x['Username'])))
     # If we POST to the page, update the database
     if request.method == 'POST':
         item = request.form['item']
@@ -276,7 +283,7 @@ def spending():
         )
         db.commit()
         # Not sure where this should redirect to
-    return render_template('admin/spending.html', chapters=chapters, items=items)
+    return render_template('admin/spending.html', chapters=chapters, items=items, chapter_list=chapter_list)
 
 @bp.route('/admin/<cmd>')
 # This is the command buttons link - I followed a tutorial to make this happen
