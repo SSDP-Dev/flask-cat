@@ -2,7 +2,7 @@
 {% endblock %} {% block content %}
 <div class = "col">
   <h1>{% block title %}Available Activities{% endblock %}</h1>
-  <p>These are all the available activities that your chapter can complete.</p>
+  <p>These are all the available activities that your chapter can complete. <a href="#spanish_translation">En Español</a></p>
   <h2>Chapter Building</h2>
   <div >
       <table class = "table">
@@ -37,6 +37,7 @@
               <tr>
                   <th scope = "col">Activity</th>
                   <th scope = "col">Description</th>
+                  <th scope = "col">Points</th>
               </tr>
           </thead>
           <tbody>
@@ -49,6 +50,9 @@
                   <td>
                     {{activity.description | safe}}
                   </td>
+                  <td valign="top">
+                    {{activity.point_value}}
+                  </td>
               </tr>
               {% endif %}
               {% endfor %}
@@ -60,6 +64,7 @@
               <tr>
                   <th scope = "col">Activity</th>
                   <th scope = "col">Description</th>
+                  <th scope = "col">Points</th>
               </tr>
           </thead>
           <tbody>
@@ -72,13 +77,97 @@
                   <td>
                     {{activity.description | safe}}
                   </td>
+                  <td valign="top">
+                    {{activity.point_value}}
+                  </td>
               </tr>
               {% endif %}
               {% endfor %}
           </tbody>
       </table>
       <!-- Spanish Translations -->
-
+      <h2 id="spanish_translation">Chapter Building</h2>
+      <div >
+          <table class = "table">
+              <thead>
+                  <tr>
+                      <th scope = "col">Activity</th>
+                      <th scope = "col">Description</th>
+                      <th scope = "col">Points</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for activity in activities %}
+                  {% if activity.type == 'Community Building' %}
+                  <tr>
+                      <td valign="top">
+                        {{ activity.title }}
+                      </td>
+                      <td valign = "top">
+                        {{activity.spanish_translation | safe}}
+                      </td>
+                      <td valign="top">
+                        {{activity.point_value}}
+                      </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
+          <h2>Policy Change</h2>
+          <table class = "table">
+              <thead>
+                  <tr>
+                      <th scope = "col">Activity</th>
+                      <th scope = "col">Description</th>
+                      <th scope = "col">Points</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for activity in activities %}
+                  {% if activity.type == 'Policy Change' %}
+                  <tr>
+                      <td>
+                        {{ activity.title }}
+                      </td>
+                      <td>
+                        {{activity.spanish_translation | safe}}
+                      </td>
+                      <td valign="top">
+                        {{activity.point_value}}
+                      </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
+          <h2>Training and Education</h2>
+          <table class = "table">
+              <thead>
+                  <tr>
+                      <th scope = "col">Activity</th>
+                      <th scope = "col">Description</th>
+                      <th scope = "col">Points</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for activity in activities %}
+                  {% if activity.type == 'Training and Education' %}
+                  <tr>
+                      <td>
+                        {{ activity.title }}
+                      </td>
+                      <td>
+                        {{activity.spanish_translation | safe}}
+                      </td>
+                      <td valign="top">
+                        {{activity.point_value}}
+                      </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
 
     </div>
 </div>
