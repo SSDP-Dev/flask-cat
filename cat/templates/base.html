@@ -1,21 +1,50 @@
 <!doctype html>
 <html>
 <head>
+<meta charset="utf-8">
+
 <!-- Pull whatever the title of the page is, supplied with the block title tags in each page -->
 <title>{% block title %}{% endblock %} - SSDP</title>
-<meta charset="utf-8">
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="{{url_for('static', filename='ssdp_favicon.png')}}" type="image/png" />
+
 <!-- Make it responsive -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- Mobile tags -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
+
+<!-- SEO -->
+<meta name="author" content="Students for Sensible Drug Policy">
+<meta name="description" content="Students for Sensible Drug Policy Chapter Activity Tracker">
+<meta name="robots" content="index, follow">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ogdenstudios">
+<meta name="twitter:title" content="SSDP CAT">
+<meta name="twitter:description" content="Students for Sensible Drug Policy Chapter Activity Tracker">
+<meta name="twitter:creator" content="@ogdenstudios">
+
+<!-- Twitter Summary card images must be at least 120x120px -->
+<meta name="twitter:image" content="{{ url_for('static', filename='logo-transparent.png') }}">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="18th EMBL PhD Symposium: Life by Numbers">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ url_for(request.endpoint) }}">
+<meta property="og:image" content="{{ url_for('static', filename='SSDP20-logo-transparent.png') }}">
+<meta property="og:description" content="Students for Sensible Drug Policy Chapter Activity Tracker">
+<meta property="og:site_name" content="SSDP CAT">
+
 <!-- Get bootstrap css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 <!-- Get cusom css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 </head>
+
 <!-- Bootstrap navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
     <section class="container">
@@ -43,6 +72,7 @@
     </section>
     </div>
 </nav>
+
 <section class="container">
     <header>
       <!-- Provide a header -->
@@ -58,6 +88,7 @@
   </div>
 </section>
 </html>
+
 <!-- Bootstrap JS reqs -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
