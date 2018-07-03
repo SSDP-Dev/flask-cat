@@ -2,5 +2,28 @@
 {% extends 'base.html' %}
 {% block header %}
 {% endblock %} {% block content %}
-{% block title %}{{activity['title']}}{% endblock %}
+<div class = "col">
+  <h1>{% block title %}{{activity['title']}}{% endblock %}</h1>
+
+  <div >
+      <table class = "table">
+          <thead>
+              <tr>
+                  <th scope = "col">Chapter</th>
+                  <th scope = "col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for chapter in chapters %}
+                <tr>
+                  <td>
+                    {{chapter['author_id']}}
+                  </td>
+                  <td>
+                    {{chapter['created']}}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
 {% endblock %}
