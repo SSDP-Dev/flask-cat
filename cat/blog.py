@@ -233,3 +233,9 @@ def faq():
 @bp.route('/store')
 def store():
     return render_template('blog/store.html')
+
+# This function gives us a page which lists who has completed a certain activity
+@bp.route('/activity/<int:id>')
+def activity(id):
+    activity = {"name" : "something"}
+    return render_template('blog/activity.html', activity=activity)
