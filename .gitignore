@@ -12,4 +12,4 @@ build/
 *.swp
 *~
 tests/
-*.sqlite
+.sqlite
