@@ -1,13 +1,18 @@
 <!doctype html>
 <html>
+<head>
 <!-- Pull whatever the title of the page is, supplied with the block title tags in each page -->
 <title>{% block title %}{% endblock %} - SSDP</title>
+<meta charset="utf-8">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{{url_for('static', filename='ssdp_favicon.png')}}" type="image/png" />
 <!-- Make it responsive -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Get bootstrap css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 <!-- Get cusom css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+</head>
 <!-- Bootstrap navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
     <section class="container">
