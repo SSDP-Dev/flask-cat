@@ -14,3 +14,4 @@ build/
 tests/
 *.sqlite
 instance/
+MANIFEST.in
